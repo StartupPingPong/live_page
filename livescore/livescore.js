@@ -7,5 +7,13 @@ if (Meteor.isClient) {
       return Teams.find();
     }
   });
+
+  Template.team.events({
+  	"click .point": function () {
+  		// add one point to the team
+  		Teams.update(this._id, {$inc: {liveScore: 1} });
+  	}
+  });
+
 }
 
