@@ -1,7 +1,10 @@
 Teams = new Mongo.Collection("teams");
 Games = new Mongo.Collection("games");
+			console.log("asf")
 
 if (Meteor.isClient) {
+				console.log("asf")
+
 	Template.newgame.helpers({
 		teams: function () {
 			return Teams.find();
@@ -9,15 +12,19 @@ if (Meteor.isClient) {
 	});
 
 	Template.newgame.events({
-		'submit form': function() {
+
+		'submit form' : function(event, template) {
+			console.log("asf")
 			var teamOne = event.target.teamOne.value;
 			var teamTwo = event.target.teamTwo.value;
 			var gameType = event.target.gameType.value;
 			Games.insert({
 				createdAt: new Date(),
 				teamOne: teamOne,
+				teamOneScore: 0,
 				teamTwo: teamTwo,
-				gameType: gameType
+				teamTwoScore: 0,
+				gameType: gamelistType
 			});
 		}
 	});
@@ -38,12 +45,10 @@ if (Meteor.isClient) {
 		'click input.delete': function () {
 			Games.remove(this._id);
 		},
-		
+
 		'click input.start': function() {
 			Router.go("/live/" + this._id);
 		}
-
 	});
-
 }
 
