@@ -1,29 +1,80 @@
 <head>
-  <title>livescore</title>
+	<title>livescore</title>
 </head>
 
 <body>
-  <div class="container">
-  	<header>The livescore!</header>
-	<ul>
-  		{{#each teams}}
-  			{{>team}}
-  		{{/each}}
-  	</ul>
-  	
-  </div>
+	<div class="container">
+		<header>The livescore!</header>
+	</div>
 </body>
 
-<template name="team">
-  <h1>{{name}} - livescore: {{liveScore}}</h1>
-  <h2>{{totalScore}}</h2>
+<template name="liveGame">
+	<div class="row">
+		<div class="large-6 columns">
+			<h2>Team 1</h2>
+		</div>
+		<div class="large-6 columns">
+			<h2>Team 2</h2>
+		</div>
 
-  <button class="point">Add score</button>
+		<h1>{{name}} - livescore: {{liveScore}}</h1>
+		<h2>{{totalScore}}</h2>
+	</div>
 </template>
 
 <template name="teamlist">
-	<div>
-		
-		
+	<div class="row">
+		<div class="large-12 columns">
+			<ul>
+				{{#each teams}}
+				<li>{{name}} - {{totalScore}}</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</template>
+
+<template name="gamelist">
+	<div class="row">
+		<div class="large-12 columns">
+			<a href="/game/new" class="button">New Game</a>
+			<ul>
+				{{#each games}}
+				<li>{{gameType}} : {{teamOne}} vs. {{teamTwo}} <input type="button" value="Start Game" class="start" /><input type="button" value="X" class="delete" /></li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</template>
+
+<template name="newgame">
+	<div class="row">
+		<div class="large-12 columns">
+			<form action="/game">
+			<label>Team 1
+					<select name="teamOne">
+						{{#each teams}}
+						<option value={{name}}>{{name}}</option>
+						{{/each}}
+					</select>
+				</label>
+				<label>Team 2
+					<select name="teamTwo">
+						{{#each teams}}
+						<option value={{name}}>{{name}}</option>
+						{{/each}}
+					</select>
+				</label>
+				<label>Game Type
+					<select name="gameType">
+						<option value="Groupstage">Groupstage</option>
+						<option value="Quarterfinal">Quarterfinal</option>
+						<option value="Semifinal">Semifinal</option>
+						<option value="Final">Final</option>
+					</select>
+				</label>
+				<input type="submit" class="button" value="Start match">
+			</form>
+		</div>
 	</div>
 </template>
