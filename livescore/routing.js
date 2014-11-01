@@ -27,6 +27,10 @@ Router.route('/game/new', function() {
 	this.render('newgame');
 });
 
+Router.route('/game/adderollen', function() {
+	
+});
+
 Router.route('/live/:_id/:teamnbr/inc', {where: 'server'})
   .put(function () {
   	if(this.params.teamnbr == 1) {

@@ -4,16 +4,16 @@
 
 <body>
 	<div class="container">
-		<header>The livescore!</header>
+	<header></header>
 	</div>
 </body>
 
 <template name="home">
-<div class="row">
-	<div class="large-12 columns">
-		<a href="/game" class="button">Gamelist</a>
+	<div class="row">
+		<div class="large-12 columns">
+			<a href="/game" class="button">Gamelist</a>
+		</div>
 	</div>
-</div>
 </template>
 
 <template name="liveGame">
@@ -49,15 +49,57 @@
 
 <template name="gamelist">
 	<div class="row">
-		<div class="large-12 columns">
-			<a href="/game/new" class="button">New Game</a>
+		<div class="large-3 columns">
+			<a href="/game/new" class="button text-center">New Game</a>
+		</div>
+		<div class="large-9 columns">
+			<ul class="button-group round">
+				<li><a href="#" class="button" data-name="pustervik">Pustervik</a></li>
+				<li><a href="#" class="button" data-name="port">Port Du Soleil</a></li>
+				<li><a href="#" class="button" data-name="park">Park Lane</a></li>
+				<li><a href="#" class="button" data-name="clarion">Clarion Hotel Post</a></li>
+			</ul>
+			<h3>Event: {{currentLocation}}</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-4 columns">
+			<h2>Quarterfinals</h2>
 			<ul>
-				{{#each games}}
-				<li>{{gameType}} : {{teamOne}} vs. {{teamTwo}} <input type="button" value="Start Game" class="start" /><input type="button" value="X" class="delete" /></li>
+				{{#each quarterFinalGames currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="large-4 columns">
+			<h2>Semifinals</h2>
+			<ul>
+				{{#each semiFinalGames currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="large-4 columns">
+			<h2>Grandfinal</h2>
+			<ul>
+				{{#each finalGames currentLocation}}
+				{{>gameListItem}}
 				{{/each}}
 			</ul>
 		</div>
 	</div>
+	<div class="row">
+		<div class="large-12 colums">
+			<h2>Groupstage</h2>
+			{{#each groupStageGames currentLocation}}
+			{{>gameListItem}}
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<template name="gameListItem">
+	<li>{{teamOne}} vs. {{teamTwo}} <input type="button" value="Start Game" class="start" /><input type="button" value="X" class="delete" /></li>
 </template>
 
 <template name="newgame">
@@ -83,7 +125,15 @@
 						<option value="Groupstage">Groupstage</option>
 						<option value="Quarterfinal">Quarterfinal</option>
 						<option value="Semifinal">Semifinal</option>
-						<option value="Final">Final</option>
+						<option value="Grandfinal">Grandfinal</option>
+					</select>
+				</label>
+				<label>Event Location
+					<select name="eventLocation">
+						<option value="pustervik">Pustervik</option>
+						<option value="port">Port Du Soleil</option>
+						<option value="park">Park Lane</option>
+						<option value="clarion">Clarion Hotel Post</option>
 					</select>
 				</label>
 				<input type="submit" class="button" value="Create game">
