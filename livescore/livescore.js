@@ -134,6 +134,41 @@ if (Meteor.isClient) {
 			var gameID = $('#liveGameID').text();
 			Games.update({_id: gameID}, {$inc: {teamTwoScore: 1}});
 		}
+	});
+
+	Template.totalScore.helpers({
+		teams: function() {
+			return Teams.find({}, {sort: {totalScore: -1}});
+		}
+	});
+
+	Template.adminTotalScore.helpers({
+		teams: function() {
+			return Teams.find({}, {sort: {totalScore: -1}});
+		}
+	});
+
+	Template.adminTotalScore.events({
+		'click a': function(event, template) {
+			var teamID = $(event.target).data('id');
+			var newScore = $(event.target.parentNode.previousElementSibling.lastElementChild).val();
+			Teams.update({_id: teamID}, {$set: {totalScore: newScore}});
+			$(event.target.parentNode.previousElementSibling.lastElementChild).val('');
+		}
+	});
+
+	Template.createTeam.events({
+		'submit form': function(event, template) {
+			event.preventDefault();
+			var teamName = event.target.teamName.value;
+			var teamScore = event.target.teamScore.value;
+			Teams.insert({
+				createdAt: new Date(),
+				name: teamName,
+				totalScore: teamScore
+			});
+			Router.go('/adderollen/total');
+		}
 	})
 	
 }

@@ -15,3 +15,7 @@
 li .active-game {
 	font-weight: bold;
 }
+
+li a {
+	color: inherit;
+}
