@@ -4,7 +4,7 @@
 
 <body>
 	<div class="container">
-	<header></header>
+		<header></header>
 	</div>
 </body>
 
@@ -16,7 +16,25 @@
 	</div>
 </template>
 
+<template name="live">
+	<div class="row">
+		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}}</h1></div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<h2 class="text-center">{{livegame.teamOne}}</h2>
+			<h3 class="text-center">{{livegame.teamOneScore}}</h3>
+		</div>
+		<div class="large-6 columns">
+			<h2 class="text-center">{{livegame.teamTwo}}</h2>
+			<h3 class="text-center">{{livegame.teamTwoScore}}</h3>
+		</div>
+	</div>
+
+</template>
+
 <template name="liveGame">
+
 	<div class="row">
 		<div class="large-12 columns"><h1 class="text-center">{{game.gameType}}</h1></div>
 	</div>
@@ -47,19 +65,35 @@
 	</div>
 </template>
 
+<template name="adminLive">
+	<div class="row">
+	<div class="large-12 columns">
+		<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
+		<h3 id="idContainer">{{livegame._id}}</h3>
+	</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<h2>{{livegame.teamOne}} - {{livegame.teamOneScore}}</h2>
+			<input class="button tiny scoreOne" value="Score" data-name="{{teamOne}}" />
+		</div>
+		<div class="large-6 columns">
+			<h2>{{livegame.teamTwo}} - {{livegame.teamTwoScore}}</h2>
+			<input class="button tiny scoreTwo" value="Score" data-name="{{teamTwo}}" />
+		</div>
+	</div>
+</template>
+
 <template name="gamelist">
 	<div class="row">
-		<div class="large-3 columns">
-			<a href="/game/new" class="button text-center">New Game</a>
-		</div>
-		<div class="large-9 columns">
+		<div class="large-12 columns">
 			<ul class="button-group round">
 				<li><a href="#" class="button" data-name="pustervik">Pustervik</a></li>
 				<li><a href="#" class="button" data-name="port">Port Du Soleil</a></li>
 				<li><a href="#" class="button" data-name="park">Park Lane</a></li>
 				<li><a href="#" class="button" data-name="clarion">Clarion Hotel Post</a></li>
 			</ul>
-			<h3>Event: {{currentLocation}}</h3>
+			<h3 class="text-center">Event: {{currentLocation}}</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -98,46 +132,117 @@
 	</div>
 </template>
 
-<template name="gameListItem">
-	<li>{{teamOne}} vs. {{teamTwo}} <input type="button" value="Start Game" class="start" /><input type="button" value="X" class="delete" /></li>
-</template>
-
-<template name="newgame">
+<template name="admin">
 	<div class="row">
 		<div class="large-12 columns">
-			<form action="/game">
-				<label>Team 1
-					<select name="teamOne">
-						{{#each teams}}
-						<option value={{name}}>{{name}}</option>
-						{{/each}}
-					</select>
-				</label>
-				<label>Team 2
-					<select name="teamTwo">
-						{{#each teams}}
-						<option value={{name}}>{{name}}</option>
-						{{/each}}
-					</select>
-				</label>
-				<label>Game Type
-					<select name="gameType">
-						<option value="Groupstage">Groupstage</option>
-						<option value="Quarterfinal">Quarterfinal</option>
-						<option value="Semifinal">Semifinal</option>
-						<option value="Grandfinal">Grandfinal</option>
-					</select>
-				</label>
-				<label>Event Location
-					<select name="eventLocation">
-						<option value="pustervik">Pustervik</option>
-						<option value="port">Port Du Soleil</option>
-						<option value="park">Park Lane</option>
-						<option value="clarion">Clarion Hotel Post</option>
-					</select>
-				</label>
-				<input type="submit" class="button" value="Create game">
-			</form>
+			<a href="/adderollen/game">Game List</a>
+			<a href="/adderollen/live">Live</a>
 		</div>
 	</div>
 </template>
+
+<template name="adminGameList">
+	<div class="row">
+		<div class="large-3 columns">
+			<a href="/game/new" class="button text-center">New Game</a>
+		</div>
+		<div class="large-9 columns">
+			<ul class="button-group round">
+				<li><a href="#" class="button location" data-location="pustervik">Pustervik</a></li>
+				<li><a href="#" class="button location" data-location="port">Port Du Soleil</a></li>
+				<li><a href="#" class="button location" data-location="park">Park Lane</a></li>
+				<li><a href="#" class="button location" data-location="clarion">Clarion Hotel Post</a></li>
+			</ul>
+			<h3>Event: {{currentLocation}}</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-4 columns">
+			<h2>Quarterfinals</h2>
+			<ul>
+				{{#each quarterFinalGames currentLocation}}
+				{{>adminGameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="large-4 columns">
+			<h2>Semifinals</h2>
+			<ul>
+				{{#each semiFinalGames currentLocation}}
+				{{>adminGameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="large-4 columns">
+			<h2>Grandfinal</h2>
+			<ul>
+				{{#each finalGames currentLocation}}
+				{{>adminGameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 colums">
+			<h2>Groupstage</h2>
+			{{#each groupStageGames currentLocation}}
+			{{>adminGameListItem}}
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<template name="adminGameListItem">
+	<li class="{{status}}">{{teamOne}} vs. {{teamTwo}}
+		<input class="button tiny start" value="Start" data-id="{{_id}}" />
+		<input class="button tiny alert delete" value="Delete" />
+		<ul class="button-group">
+			<li><a href="#" class="button tiny status" data-status="pre">Pre</a></li>
+			<li><a href="#" class="button tiny status" data-status="active">Active</a></li>
+			<li><a href="#" class="button tiny status" data-status="post">Post</a></li>
+		</ul></li>
+	</template>
+
+	<template name="gameListItem">
+		<li class="{{status}}">{{teamOne}} vs. {{teamTwo}} : {{teamOneScore}} - {{teamTwoScore}}</li>
+	</template>
+
+	<template name="newgame">
+		<div class="row">
+			<div class="large-12 columns">
+				<form action="/game">
+					<label>Team 1
+						<select name="teamOne">
+							{{#each teams}}
+							<option value={{name}}>{{name}}</option>
+							{{/each}}
+						</select>
+					</label>
+					<label>Team 2
+						<select name="teamTwo">
+							{{#each teams}}
+							<option value={{name}}>{{name}}</option>
+							{{/each}}
+						</select>
+					</label>
+					<label>Game Type
+						<select name="gameType">
+							<option value="Groupstage">Groupstage</option>
+							<option value="Quarterfinal">Quarterfinal</option>
+							<option value="Semifinal">Semifinal</option>
+							<option value="Grandfinal">Grandfinal</option>
+						</select>
+					</label>
+					<label>Event Location
+						<select name="eventLocation">
+							<option value="pustervik">Pustervik</option>
+							<option value="port">Port Du Soleil</option>
+							<option value="park">Park Lane</option>
+							<option value="clarion">Clarion Hotel Post</option>
+						</select>
+					</label>
+					<input type="submit" class="button" value="Create game">
+				</form>
+			</div>
+		</div>
+	</template>

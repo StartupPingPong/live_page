@@ -27,9 +27,17 @@ Router.route('/game/new', function() {
 	this.render('newgame');
 });
 
-Router.route('/game/adderollen', function() {
-	
+Router.route('/adderollen', function() {
+	this.render('admin');
+})
+
+Router.route('/adderollen/game', function() {
+	this.render('adminGameList');
 });
+
+Router.route('/adderollen/live', function() {
+	this.render('adminLive');
+})
 
 Router.route('/live/:_id/:teamnbr/inc', {where: 'server'})
   .put(function () {
