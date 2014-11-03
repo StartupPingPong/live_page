@@ -1,15 +1,5 @@
 Teams = new Mongo.Collection("teams");
 Games = new Mongo.Collection("games");
-LiveGame = new Mongo.Collection('livegame');
-
-if (Meteor.isSever) {
-
-	Meteor.methods({
-		clearLive: function() {
-			return LiveGame.remove({});
-		}			
-	});
-}
 
 
 if (Meteor.isClient) {
@@ -35,7 +25,8 @@ if (Meteor.isClient) {
 				teamTwoScore: 0,
 				gameType: gameType,
 				eventLocation: eventLocation,
-				status: "preGame"
+				status: "preGame",
+				active: false
 			});
 			Router.go('/adderollen/game');
 		}
@@ -77,20 +68,13 @@ if (Meteor.isClient) {
 			Games.remove(this._id);
 		},
 
-		'click input.start': function(event, template) {
+		'click input.activate': function(event, template) {
 			var gameID = $(event.target).data('id');
-			var liveGame = Games.findOne(gameID);
-			Meteor.call('clearLive');
-			LiveGame.insert({
-				createdAt: new Date(),
-				teamOne: liveGame.teamOne,
-				teamOneScore: 0,
-				teamTwo: liveGame.teamTwo,
-				teamTwoScore: 0,
-				gameType: liveGame.gameType,
-				eventLocation: liveGame.eventLocation,
-				gameID: gameID
-			});
+			var oldGame = Games.findOne({active: true});
+			if(oldGame) {
+				Games.update({_id: oldGame._id}, {$set: {active: false}});
+			}
+			Games.update({_id: gameID}, {$set: {active: true}});
 			Router.go("/adderollen/live");
 		},
 
@@ -99,12 +83,6 @@ if (Meteor.isClient) {
 			Games.update({_id: this._id}, {$set: {status: status}});
 		}
 	});
-
-	Template.adminGameList.helpers({
-		livegame: function() {
-			return LiveGame.find({});
-		}
-	})
 
 	Template.gamelist.helpers({
 		games: function() {
@@ -136,28 +114,24 @@ if (Meteor.isClient) {
 
 	Template.live.helpers({
 		livegame: function() {
-			return LiveGame.findOne();
+			return Games.findOne({active: true});
 		}
 	});
 
 	Template.adminLive.helpers({
 		livegame: function() {
-			return LiveGame.findOne();
+			return Games.findOne({active: true});
 		}
 	});
 
 	Template.adminLive.events({
 		'click input.scoreOne': function(event, template) {
-			var liveGameID = $('#liveGameID').text();
-			var gameID = $('#gameID').text();
-			LiveGame.update({_id: liveGameID}, {$inc: {teamOneScore: 1}});
+			var gameID = $('#liveGameID').text();
 			Games.update({_id: gameID}, {$inc: {teamOneScore: 1}});
 		},
 
 		'click input.scoreTwo': function(event, template) {
-			var liveGameID = $('#liveGameID').text();
-			var gameID = $('#gameID').text();
-			LiveGame.update({_id: liveGameID}, {$inc: {teamTwoScore: 1}});
+			var gameID = $('#liveGameID').text();
 			Games.update({_id: gameID}, {$inc: {teamTwoScore: 1}});
 		}
 	})

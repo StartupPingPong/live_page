@@ -4,7 +4,23 @@
 
 <body>
 	<div class="container">
-		<header></header>
+		<header>
+			<nav class="top-bar" role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<h1><a href="/">SUPP</a></h1>
+					</li>
+				</ul>
+				<section class="top-bar-section">
+					<ul class="right">
+						<li><a href="/game">Game List</a></li>
+						<li><a href="/live">Live</a></li>
+						<li><a href="/adderollen/game">Admin Game List</a></li>
+						<li><a href="/adderollen/live">Admin Live</a></li>
+					</ul>
+				</section>
+			</nav>
+		</header>
 	</div>
 </body>
 
@@ -67,12 +83,11 @@
 
 <template name="adminLive">
 	<div class="row">
-	<div class="large-12 columns">
-		<a href="/adderollen" class="button tiny">Back</a>
-		<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
-		<h3>LiveGame id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
-		<h3>Game id: </h3><h3 id="gameID">{{livegame.gameID}}</h3>
-	</div>
+		<div class="large-12 columns">
+			<a href="/adderollen" class="button tiny">Back</a>
+			<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
+			<h3>Game id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
+		</div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
@@ -196,14 +211,15 @@
 </template>
 
 <template name="adminGameListItem">
-	<li class="{{status}}">{{teamOne}} vs. {{teamTwo}}
-		<input class="button tiny start" value="Start" data-id="{{_id}}" />
+	<li class="status-{{status}}">{{teamOne}} vs. {{teamTwo}}
+		<input class="button tiny activate" value="Activate" data-id="{{_id}}" />
 		<input class="button tiny alert delete" value="Delete" />
 		<ul class="button-group">
 			<li><a href="#" class="button tiny status" data-status="pre">Pre</a></li>
 			<li><a href="#" class="button tiny status" data-status="active">Active</a></li>
 			<li><a href="#" class="button tiny status" data-status="post">Post</a></li>
 		</ul></li>
+		
 	</template>
 
 	<template name="gameListItem">

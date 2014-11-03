@@ -1,13 +1,17 @@
 /* CSS declarations go here */
 
-.pre {
+.status-pre {
 	color: grey;
 }
 
-.active {
+.status-active {
 	color: green;
 }
 
-.post {
+.status-post {
 	color: red;
+}
+
+li .active-game {
+	font-weight: bold;
 }
