@@ -20,6 +20,7 @@ Router.route('/teamlist', function() {
 });
 
 Router.route('/game', function() {
+	Session.set('eventLocation', 'pustervik');
 	this.render('gamelist');
 });
 
@@ -32,6 +33,7 @@ Router.route('/adderollen', function() {
 })
 
 Router.route('/adderollen/game', function() {
+	Session.set('eventLocation', 'pustervik');
 	this.render('adminGameList');
 });
 

@@ -68,8 +68,10 @@
 <template name="adminLive">
 	<div class="row">
 	<div class="large-12 columns">
+		<a href="/adderollen" class="button tiny">Back</a>
 		<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
-		<h3 id="idContainer">{{livegame._id}}</h3>
+		<h3>LiveGame id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
+		<h3>Game id: </h3><h3 id="gameID">{{livegame.gameID}}</h3>
 	</div>
 	</div>
 	<div class="row">
@@ -135,8 +137,8 @@
 <template name="admin">
 	<div class="row">
 		<div class="large-12 columns">
-			<a href="/adderollen/game">Game List</a>
-			<a href="/adderollen/live">Live</a>
+			<a href="/adderollen/game" class="button tiny">Game List</a>
+			<a href="/adderollen/live" class="button tiny">Live</a>
 		</div>
 	</div>
 </template>
@@ -145,6 +147,7 @@
 	<div class="row">
 		<div class="large-3 columns">
 			<a href="/game/new" class="button text-center">New Game</a>
+			<a href="/adderollen" class="button tiny">Back</a>
 		</div>
 		<div class="large-9 columns">
 			<ul class="button-group round">

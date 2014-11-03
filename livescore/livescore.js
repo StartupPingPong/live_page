@@ -2,6 +2,16 @@ Teams = new Mongo.Collection("teams");
 Games = new Mongo.Collection("games");
 LiveGame = new Mongo.Collection('livegame');
 
+if (Meteor.isSever) {
+
+	Meteor.methods({
+		clearLive: function() {
+			return LiveGame.remove({});
+		}			
+	});
+}
+
+
 if (Meteor.isClient) {
 	Template.newgame.helpers({
 		teams: function () {
@@ -79,6 +89,7 @@ if (Meteor.isClient) {
 				teamTwoScore: 0,
 				gameType: liveGame.gameType,
 				eventLocation: liveGame.eventLocation,
+				gameID: gameID
 			});
 			Router.go("/adderollen/live");
 		},
@@ -137,24 +148,20 @@ if (Meteor.isClient) {
 
 	Template.adminLive.events({
 		'click input.scoreOne': function(event, template) {
-			var gameID = $('#idContainer').text();
-			LiveGame.update({_id: gameID}, {$inc: {teamOneScore: 1}});
+			var liveGameID = $('#liveGameID').text();
+			var gameID = $('#gameID').text();
+			LiveGame.update({_id: liveGameID}, {$inc: {teamOneScore: 1}});
+			Games.update({_id: gameID}, {$inc: {teamOneScore: 1}});
 		},
 
 		'click input.scoreTwo': function(event, template) {
-			var gameID = $('#idContainer').text();
-			LiveGame.update({_id: gameID}, {$inc: {teamTwoScore: 1}});
+			var liveGameID = $('#liveGameID').text();
+			var gameID = $('#gameID').text();
+			LiveGame.update({_id: liveGameID}, {$inc: {teamTwoScore: 1}});
+			Games.update({_id: gameID}, {$inc: {teamTwoScore: 1}});
 		}
 	})
 	
 }
 
-if (Meteor.isSever) {
-
-	Meteor.methods({
-		clearLive: function() {
-			return LiveGame.remove({});
-		}			
-	});
-}
 
