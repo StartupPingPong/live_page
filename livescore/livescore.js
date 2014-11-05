@@ -28,7 +28,7 @@ if (Meteor.isClient) {
 				status: "preGame",
 				active: false
 			});
-			Router.go('/adderollen/game');
+			Router.go('/admin/game');
 		}
 	});
 
@@ -75,7 +75,7 @@ if (Meteor.isClient) {
 				Games.update({_id: oldGame._id}, {$set: {active: false}});
 			}
 			Games.update({_id: gameID}, {$set: {active: true}});
-			Router.go("/adderollen/live");
+			Router.go("/admin/live");
 		},
 
 		'click a.status': function(event, template) {
@@ -169,7 +169,7 @@ if (Meteor.isClient) {
 				owner: Meteor.userId(),
 				username: Meteor.user().username
 			});
-			Router.go('/adderollen/total');
+			Router.go('/admin/total');
 		}
 	});
 

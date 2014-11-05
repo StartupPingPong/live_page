@@ -27,23 +27,23 @@ Router.route('/game/:_id', function() {
 		}});
 });
 
-Router.route('/adderollen', function() {
+Router.route('/admin', function() {
 	this.render('admin');
 })
 
-Router.route('/adderollen/game', function() {
+Router.route('/admin/game', function() {
 	Session.set('eventLocation', 'pustervik');
 	this.render('adminGameList');
 });
 
-Router.route('/adderollen/live', function() {
+Router.route('/admin/live', function() {
 	this.render('adminLive');
 });
 
-Router.route('/adderollen/total', function() {
+Router.route('/admin/total', function() {
 	this.render('adminTotalScore');
 });	
 
-Router.route('adderollen/team/new', function() {
+Router.route('admin/team/new', function() {
 	this.render('createTeam');
 });

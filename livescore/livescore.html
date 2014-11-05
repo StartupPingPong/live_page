@@ -17,9 +17,9 @@
 						<li><a href="/live">Live</a></li>
 						<li><a href="/total">Total Score</a></li>
 						{{#if currentUser}}
-						<li><a href="/adderollen/game">Admin Game List</a></li>
-						<li><a href="/adderollen/live">Admin Live</a></li>
-						<li><a href="/adderollen/total">Admin Total Score</a></li>
+						<li><a href="/admin/game">Admin Game List</a></li>
+						<li><a href="/admin/live">Admin Live</a></li>
+						<li><a href="/admin/total">Admin Total Score</a></li>
 						{{/if}}
 					</ul>
 				</section>
@@ -157,8 +157,8 @@
 	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
-			<a href="/adderollen/game" class="button tiny">Game List</a>
-			<a href="/adderollen/live" class="button tiny">Live</a>
+			<a href="/admin/game" class="button tiny">Game List</a>
+			<a href="/admin/live" class="button tiny">Live</a>
 		</div>
 	</div>
 	{{else}}
@@ -175,7 +175,7 @@
 	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
-			<a href="/adderollen" class="button tiny">Back</a>
+			<a href="/admin" class="button tiny">Back</a>
 			<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
 			<h3>Game id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
 		</div>
@@ -200,7 +200,7 @@
 	<div class="row">
 		<div class="large-3 columns">
 			<a href="/game/new" class="button text-center">New Game</a>
-			<a href="/adderollen" class="button tiny">Back</a>
+			<a href="/admin" class="button tiny">Back</a>
 		</div>
 		<div class="large-9 columns">
 			<ul class="button-group round">
@@ -360,7 +360,7 @@
 	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
-			<a href="/adderollen/team/new" class="button">New Team</a>
+			<a href="/admin/team/new" class="button">New Team</a>
 			<table class="team-list">
 				<thead>
 					<tr>
