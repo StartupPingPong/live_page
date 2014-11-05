@@ -165,11 +165,17 @@ if (Meteor.isClient) {
 			Teams.insert({
 				createdAt: new Date(),
 				name: teamName,
-				totalScore: teamScore
+				totalScore: teamScore,
+				owner: Meteor.userId(),
+				username: Meteor.user().username
 			});
 			Router.go('/adderollen/total');
 		}
-	})
+	});
+
+	Accounts.ui.config({
+		passwordSignupFields: "USERNAME_ONLY"
+	});
 	
 }
 

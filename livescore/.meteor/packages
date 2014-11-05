@@ -8,4 +8,6 @@ autopublish
 insecure
 iron:router
 foundation
+accounts-ui
+accounts-password
 

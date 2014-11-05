@@ -16,9 +16,11 @@
 						<li><a href="/game">Game List</a></li>
 						<li><a href="/live">Live</a></li>
 						<li><a href="/total">Total Score</a></li>
+						{{#if currentUser}}
 						<li><a href="/adderollen/game">Admin Game List</a></li>
 						<li><a href="/adderollen/live">Admin Live</a></li>
 						<li><a href="/adderollen/total">Admin Total Score</a></li>
+						{{/if}}
 					</ul>
 				</section>
 			</nav>
@@ -78,26 +80,6 @@
 				<li>{{name}} - {{totalScore}}</li>
 				{{/each}}
 			</ul>
-		</div>
-	</div>
-</template>
-
-<template name="adminLive">
-	<div class="row">
-		<div class="large-12 columns">
-			<a href="/adderollen" class="button tiny">Back</a>
-			<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
-			<h3>Game id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-			<h2>{{livegame.teamOne}} - {{livegame.teamOneScore}}</h2>
-			<input class="button tiny scoreOne" value="Score" data-name="{{teamOne}}" />
-		</div>
-		<div class="large-6 columns">
-			<h2>{{livegame.teamTwo}} - {{livegame.teamTwoScore}}</h2>
-			<input class="button tiny scoreTwo" value="Score" data-name="{{teamTwo}}" />
 		</div>
 	</div>
 </template>
@@ -172,15 +154,49 @@
 </template>
 
 <template name="admin">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
 			<a href="/adderollen/game" class="button tiny">Game List</a>
 			<a href="/adderollen/live" class="button tiny">Live</a>
 		</div>
 	</div>
+	{{else}}
+	<div class="row">
+	<div class="large-12 columns" style="text-align:center;">
+		{{> loginButtons}}
+	</div>
+	</div>
+	{{> notLoggedIn}}
+	{{/if}}
+</template>
+
+<template name="adminLive">
+	{{#if currentUser}}
+	<div class="row">
+		<div class="large-12 columns">
+			<a href="/adderollen" class="button tiny">Back</a>
+			<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
+			<h3>Game id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<h2>{{livegame.teamOne}} - {{livegame.teamOneScore}}</h2>
+			<input class="button tiny scoreOne" value="Score" data-name="{{teamOne}}" />
+		</div>
+		<div class="large-6 columns">
+			<h2>{{livegame.teamTwo}} - {{livegame.teamTwoScore}}</h2>
+			<input class="button tiny scoreTwo" value="Score" data-name="{{teamTwo}}" />
+		</div>
+	</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
 </template>
 
 <template name="adminGameList">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="large-3 columns">
 			<a href="/game/new" class="button text-center">New Game</a>
@@ -230,6 +246,9 @@
 			{{/each}}
 		</div>
 	</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
 </template>
 
 <template name="adminGameListItem">
@@ -250,6 +269,7 @@
 </template>
 
 <template name="newgame">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
 			<form action="/game">
@@ -287,18 +307,26 @@
 			</form>
 		</div>
 	</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
 </template>
 
-<template name="createTeam"> 
-<div class="row">
-	<div class="large-12 columns">
-		<form>
-			<input type="text" placeholder="Team Name" name="teamName">
-			<input type="text" placeholder="Team Score" name="teamScore">
-			<input type="submit" class="button" value="Create team">
-		</form>
+<template name="createTeam">
+	{{#if currentUser}} 
+	<div class="row">
+		<div class="large-12 columns">
+
+			<form>
+				<input type="text" placeholder="Team Name" name="teamName">
+				<input type="text" placeholder="Team Score" name="teamScore">
+				<input type="submit" class="button" value="Create team">
+			</form>
+		</div>
 	</div>
-</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
 </template>
 
 <template name="totalScore">
@@ -329,6 +357,7 @@
 </template>
 
 <template name="adminTotalScore">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
 			<a href="/adderollen/team/new" class="button">New Team</a>
@@ -338,6 +367,7 @@
 						<th>Team</th>
 						<th>Points</th>
 						<th>New Score</th>
+						<th>Creator</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -348,6 +378,9 @@
 			</table>
 		</div>
 	</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
 </template>
 
 <template name="adminTeamListItem">
@@ -366,5 +399,16 @@
 				</div>
 			</form>
 		</td>
+		<td>{{username}}</td>
 	</tr>
+</template>
+
+<template name="notLoggedIn">
+	<div class="row">
+		<div class="large-12 columns" style="text-align:center;">
+			<h1>Ops it looks like you're not an admin...</h1>
+			<h3>Here is a cute cat for the inconvenience:</h3>
+			<img src="http://www.lovethispic.com/uploaded_images/44844-Cute-Cat.png">
+		</div>
+	</div>
 </template>
