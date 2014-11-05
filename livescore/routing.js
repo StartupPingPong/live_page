@@ -47,3 +47,7 @@ Router.route('/admin/total', function() {
 Router.route('admin/team/new', function() {
 	this.render('createTeam');
 });
+
+Router.route('admin/rolenisawesome', function() {
+	this.render('adminLogin');
+})

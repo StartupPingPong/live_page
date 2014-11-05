@@ -162,11 +162,7 @@
 		</div>
 	</div>
 	{{else}}
-	<div class="row">
-	<div class="large-12 columns" style="text-align:center;">
-		{{> loginButtons}}
-	</div>
-	</div>
+
 	{{> notLoggedIn}}
 	{{/if}}
 </template>
@@ -401,6 +397,14 @@
 		</td>
 		<td>{{username}}</td>
 	</tr>
+</template>
+
+<template name="adminLogin">
+	<div class="row">
+		<div class="large-12 columns" style="text-align:center;">
+			{{> loginButtons}}
+		</div>
+	</div>
 </template>
 
 <template name="notLoggedIn">
