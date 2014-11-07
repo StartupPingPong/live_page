@@ -101,7 +101,7 @@
 		<div class="medium-4 columns" data-equalizer-watch>
 			<h2>Quarterfinals</h2>
 			<ul class="quarter-final-games">
-				{{#each quarterFinalGames currentLocation}}
+				{{#each findGames "Quarter" currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
 			</ul>
@@ -109,7 +109,7 @@
 		<div class="medium-4 columns semi-final-games-container" data-equalizer-watch>
 			<h2>Semifinals</h2>
 			<ul class="semi-final-games">
-				{{#each semiFinalGames currentLocation}}
+				{{#each findGames "Semi" currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
 			</ul>
@@ -117,7 +117,7 @@
 		<div class="medium-4 columns" data-equalizer-watch>
 			<h2>Grandfinal</h2>
 			<ul class="grand-final-games">
-				{{#each finalGames currentLocation}}
+				{{#each findGames "Grand" currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
 			</ul>
