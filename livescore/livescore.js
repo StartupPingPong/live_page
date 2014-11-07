@@ -13,15 +13,19 @@ if (Meteor.isClient) {
 
 		'submit form' : function(event, template) {
 			event.preventDefault();
-			var teamOne = event.target.teamOne.value;
-			var teamTwo = event.target.teamTwo.value;
+			var teamOne = Teams.findOne({name: event.target.teamOne.value});
+			var teamTwo = Teams.findOne({name: event.target.teamTwo.value});
+			console.log(teamOne)
+			console.log(teamTwo)
 			var gameType = event.target.gameType.value;
 			var eventLocation = event.target.eventLocation.value;
 			Games.insert({
 				createdAt: new Date(),
-				teamOne: teamOne,
+				teamOne: teamOne.name,
+				teamOneID: teamOne._id,
 				teamOneScore: 0,
-				teamTwo: teamTwo,
+				teamTwo: teamTwo.name,
+				teamTwoID: teamTwo._id,
 				teamTwoScore: 0,
 				gameType: gameType,
 				eventLocation: eventLocation,
@@ -112,13 +116,13 @@ if (Meteor.isClient) {
 		},
 
 		'mouseover .team-item': function(event, template) {
-			var teamName = $(event.target).data('name');
-			$('.'+teamName).addClass("mouse-on");
+			var teamID = $(event.target).data('id');
+			$('.' + teamID).addClass("mouse-on");
 		},
 
 		'mouseleave .team-item': function(event, template) {
-			var teamName = $(event.target).data('name');
-			$('.'+teamName).removeClass("mouse-on");
+			var teamID = $(event.target).data('id');
+			$('.' + teamID).removeClass("mouse-on");
 		}
 	});
 
