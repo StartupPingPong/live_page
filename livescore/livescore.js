@@ -159,10 +159,10 @@ if (Meteor.isClient) {
 						eventLocation: eventLocation,
 						status: "pre",
 						teamOne: gameType+" Finalist #" + ((dummyCount*2)-1),
-						teamOneID: "team"+((dummyCount*2)-1),
+						teamOneID: gameType+"team"+((dummyCount*2)-1),
 						teamOneScore: 0,
 						teamTwo: gameType+" Finalist #" + (dummyCount*2),
-						teamTwoID: "team"+dummyCount*2,
+						teamTwoID: gameType+"team"+dummyCount*2,
 						teamTwoScore: 0
 					}
 					result.push(dummy);
