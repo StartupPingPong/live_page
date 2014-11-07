@@ -264,6 +264,7 @@
 	<li class="status-{{status}}">{{teamOne}} vs. {{teamTwo}}
 		<input class="button tiny activate" value="Activate" data-id="{{_id}}" />
 		<input class="button tiny alert delete" value="Delete" />
+		<a href="/game/edit/{{_id}}" class="button tiny">Edit</a>
 		<ul class="button-group">
 			<li><a href="#" class="button tiny status" data-status="pre">Pre</a></li>
 			<li><a href="#" class="button tiny status" data-status="active">Active</a></li>
@@ -272,8 +273,6 @@
 	</li>
 
 </template>
-
-
 
 <template name="newgame">
 	{{#if currentUser}}
@@ -317,6 +316,71 @@
 	{{else}}
 	{{> notLoggedIn}}
 	{{/if}}
+</template>
+
+<template name="editGame">
+	{{#if currentUser}}
+		<div class="row">
+		<div class="large-12 columns">
+		<h1>Edit Game</h1>
+			<form>
+				<label>ID
+				<input type="text" name="gameID" readonly="readonly" value="{{game._id}}" >
+				</label>
+				<label>Team 1
+					<select name="teamOne">
+						{{#each teams}}
+						<option value={{name}} {{isSelected name ../game.teamOne}}>{{name}}</option>
+						{{/each}}
+					</select>
+				</label>
+				<label>Score Team One
+					<input type="text" name="teamOneScore" value="{{game.teamOneScore}}">
+				</label>
+				<label>Team 2
+					<select name="teamTwo">
+						{{#each teams}}
+						<option value={{name}} {{isSelected name ../game.teamTwo}}>{{name}}</option>
+						{{/each}}
+					</select>
+				</label>
+				<label>Score Team Two
+					<input type="text" name="teamTwoScore" value="{{game.teamTwoScore}}">
+				</label>
+				<label>Game Type
+					<select name="gameType">
+						<option value="Groupstage" {{isSelected "Groupstage" game.gameType}}>Groupstage</option>
+						<option value="Quarterfinal" {{isSelected "Quarterfinal" game.gameType}}>Quarterfinal</option>
+						<option value="Semifinal" {{isSelected "Semifinal" game.gameType}}>Semifinal</option>
+						<option value="Grandfinal" {{isSelected "Grandfinal" game.gameType}}>Grandfinal</option>
+					</select>
+				</label>
+				<label>Event Location
+					<select name="eventLocation">
+						<option value="pustervik" {{isSelected "pustervik" game.eventLocation}}>Pustervik</option>
+						<option value="port" {{isSelected "port" game.eventLocation}}>Port Du Soleil</option>
+						<option value="park" {{isSelected "park" game.eventLocation}}>Park Lane</option>
+						<option value="clarion" {{isSelected "clarion" game.eventLocation}}>Clarion Hotel Post</option>
+					</select>
+				</label>
+				<label>Status
+				<select name="status">
+					<option value="pre" {{isSelected "pre" game.status}}>Pre</option>
+					<option value="active" {{isSelected "active" game.status}}>Active</option>
+					<option value="post" {{isSelected "post" game.status}}>Post</option>
+				</select>
+				</label>
+				<input type="submit" class="button" value="Edit game">
+			</form>
+		</div>
+	</div>
+	{{else}}
+	{{> notLoggedIn}}
+	{{/if}}
+</template>
+
+<template name="gameForm">
+
 </template>
 
 <template name="createTeam">

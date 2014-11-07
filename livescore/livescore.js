@@ -15,8 +15,6 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			var teamOne = Teams.findOne({name: event.target.teamOne.value});
 			var teamTwo = Teams.findOne({name: event.target.teamTwo.value});
-			console.log(teamOne)
-			console.log(teamTwo)
 			var gameType = event.target.gameType.value;
 			var eventLocation = event.target.eventLocation.value;
 			Games.insert({
@@ -31,6 +29,46 @@ if (Meteor.isClient) {
 				eventLocation: eventLocation,
 				status: "preGame",
 				active: false
+			});
+			Router.go('/admin/game');
+		}
+	});
+
+	Template.editGame.helpers({
+		teams: function() {
+			return Teams.find();
+		},
+
+		isSelected: function(teamNameOne, teamNameTwo) {
+			if (teamNameOne == teamNameTwo) {
+				return "Selected";
+			} else {
+				return "";
+			}
+		}
+	});
+
+	Template.editGame.events({
+		'submit form' : function(event, template) {
+			event.preventDefault();
+			var gameID = event.target.gameID.value;
+			var teamOne = Teams.findOne({name: event.target.teamOne.value});
+			var teamOneScore = event.target.teamOneScore.value;
+			var teamTwo = Teams.findOne({name: event.target.teamTwo.value});
+			var teamTwoScore = event.target.teamTwoScore.value;
+			var gameType = event.target.gameType.value;
+			var eventLocation = event.target.eventLocation.value;
+			var status = event.target.status.value;
+			Games.update({_id: gameID}, {$set:
+				{teamOne: teamOne.name,
+				teamOneID: teamOne._id,
+				teamOneScore: teamOneScore,
+				teamTwo: teamTwo.name,
+				teamTwoID: teamTwo._id,
+				teamTwoScore: teamTwoScore,
+				gameType: gameType,
+				eventLocation: eventLocation,
+				status: status}
 			});
 			Router.go('/admin/game');
 		}

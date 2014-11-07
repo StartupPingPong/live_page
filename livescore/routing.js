@@ -19,6 +19,14 @@ Router.route('/game/new', function() {
 	this.render('newgame');
 });
 
+Router.route('/game/edit/:_id', function() {
+	this.render('editGame', { 
+		data: function() {
+			templateData = { game: Games.findOne({_id: this.params._id}) };
+			return templateData;
+		}});
+});
+
 Router.route('/game/:_id', function() {
 	this.render('viewGame', {
 		data: function() {
