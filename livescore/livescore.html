@@ -26,6 +26,7 @@
 			</nav>
 		</header>
 	</div>
+
 </body>
 
 <template name="home">
@@ -96,26 +97,26 @@
 			<h3 class="text-center">Event: {{currentLocation}}</h3>
 		</div>
 	</div>
-	<div class="row">
-		<div class="large-4 columns">
+	<div class="row" data-equalizer>
+		<div class="medium-4 columns" data-equalizer-watch>
 			<h2>Quarterfinals</h2>
-			<ul>
+			<ul class="quarter-final-games">
 				{{#each quarterFinalGames currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
 			</ul>
 		</div>
-		<div class="large-4 columns">
+		<div class="medium-4 columns semi-final-games-container" data-equalizer-watch>
 			<h2>Semifinals</h2>
-			<ul>
+			<ul class="semi-final-games">
 				{{#each semiFinalGames currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
 			</ul>
 		</div>
-		<div class="large-4 columns">
+		<div class="medium-4 columns" data-equalizer-watch>
 			<h2>Grandfinal</h2>
-			<ul>
+			<ul class="grand-final-games">
 				{{#each finalGames currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
@@ -125,11 +126,23 @@
 	<div class="row">
 		<div class="large-12 colums">
 			<h2>Groupstage</h2>
-			{{#each groupStageGames currentLocation}}
-			{{>gameListItem}}
-			{{/each}}
+			<ul class="group-stage-games">
+				{{#each groupStageGames currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
 		</div>
 	</div>
+
+</template>
+
+<template name="gameListItem">
+	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="/game/{{_id}}">
+		<ul>
+			<li class="team-one {{teamOne}} team-item" data-name="{{teamOne}}"><p class="team-name">{{teamOne}}</p><p class="team-score right">{{teamOneScore}}</p></li>
+			<li class="team-two {{teamTwo}} team-item" data-name="{{teamTwo}}"><p class="team-name">{{teamTwo}}</p><p class="team-score right">{{teamTwoScore}}</p></li>
+		</ul>
+	</a></li>
 </template>
 
 <template name="viewGame">
@@ -260,9 +273,7 @@
 
 </template>
 
-<template name="gameListItem">
-	<li class="status-{{status}}"><a href="/game/{{_id}}">{{teamOne}} vs. {{teamTwo}} : {{teamOneScore}} - {{teamTwoScore}}</a></li>
-</template>
+
 
 <template name="newgame">
 	{{#if currentUser}}

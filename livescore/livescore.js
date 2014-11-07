@@ -109,6 +109,16 @@ if (Meteor.isClient) {
 		'click a': function(event, template) {
 			var eventLocation = $(event.target).data('name');
 			Session.set('eventLocation', eventLocation);
+		},
+
+		'mouseover .team-item': function(event, template) {
+			var teamName = $(event.target).data('name');
+			$('.'+teamName).addClass("mouse-on");
+		},
+
+		'mouseleave .team-item': function(event, template) {
+			var teamName = $(event.target).data('name');
+			$('.'+teamName).removeClass("mouse-on");
 		}
 	});
 
