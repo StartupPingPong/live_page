@@ -53,8 +53,8 @@ Router.route('/admin/live', function() {
 	this.render('adminLive');
 });
 
-Router.route('/admin/total', function() {
-	this.render('adminTotalScore');
+Router.route('/admin/team', function() {
+	this.render('adminTeam');
 });	
 
 Router.route('admin/team/new', function() {

@@ -289,18 +289,25 @@ Template.totalScore.helpers({
 	}
 });
 
-Template.adminTotalScore.helpers({
+Template.adminTeam.helpers({
 	teams: function() {
 		return Teams.find({}, {sort: {totalScore: -1}});
 	}
 });
 
-Template.adminTotalScore.events({
+Template.adminTeam.events({
 	'click a': function(event, template) {
 		var teamID = $(event.target).data('id');
 		var newScore = $(event.target.parentNode.previousElementSibling.lastElementChild).val();
-		Teams.update({_id: teamID}, {$set: {totalScore: newScore}});
-		$(event.target.parentNode.previousElementSibling.lastElementChild).val('');
+		if(newScore) {
+			Teams.update({_id: teamID}, {$set: {totalScore: newScore}});
+			$(event.target.parentNode.previousElementSibling.lastElementChild).val('');
+		}
+	},
+
+	'click input.delete': function(event, template) {
+		var teamID = $(event.target).data('id');
+		Teams.remove({_id: teamID});
 	}
 });
 
@@ -316,7 +323,7 @@ Template.createTeam.events({
 			owner: Meteor.userId(),
 			username: Meteor.user().username
 		});
-		Router.go('/admin/total');
+		Router.go('/admin/team');
 	}
 });
 
