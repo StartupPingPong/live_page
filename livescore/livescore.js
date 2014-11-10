@@ -17,18 +17,22 @@ if (Meteor.isClient) {
 			var teamTwo = Teams.findOne({name: event.target.teamTwo.value});
 			var gameType = event.target.gameType.value;
 			var eventLocation = event.target.eventLocation.value;
+			var sets = event.target.sets.value;
 			Games.insert({
 				createdAt: new Date(),
 				teamOne: teamOne.name,
 				teamOneID: teamOne._id,
 				teamOneScore: 0,
+				teamOneSetScore: 0,
 				teamTwo: teamTwo.name,
 				teamTwoID: teamTwo._id,
 				teamTwoScore: 0,
+				teamTwoSetScore: 0,
 				gameType: gameType,
 				eventLocation: eventLocation,
 				status: "preGame",
-				active: false
+				active: false,
+				sets: sets
 			});
 			Router.go('/admin/game');
 		}
@@ -39,12 +43,20 @@ if (Meteor.isClient) {
 			return Teams.find();
 		},
 
-		isSelected: function(teamNameOne, teamNameTwo) {
-			if (teamNameOne == teamNameTwo) {
+		isSelected: function(valueOne, valueTwo) {
+			if (valueOne == valueTwo) {
 				return "Selected";
 			} else {
 				return "";
 			}
+		},
+
+		isChecked: function(valueOne, valueTwo) {
+			if (valueOne == valueTwo) {
+				return "Checked";
+			} else {
+				return "";
+			}	
 		}
 	});
 
@@ -59,6 +71,7 @@ if (Meteor.isClient) {
 			var gameType = event.target.gameType.value;
 			var eventLocation = event.target.eventLocation.value;
 			var status = event.target.status.value;
+			var sets = event.target.sets.value;
 			Games.update({_id: gameID}, {$set:
 				{teamOne: teamOne.name,
 					teamOneID: teamOne._id,
@@ -68,7 +81,8 @@ if (Meteor.isClient) {
 					teamTwoScore: teamTwoScore,
 					gameType: gameType,
 					eventLocation: eventLocation,
-					status: status}
+					status: status,
+					sets: sets}
 				});
 			Router.go('/admin/game');
 		}
@@ -163,7 +177,8 @@ if (Meteor.isClient) {
 						teamOneScore: 0,
 						teamTwo: gameType+" Finalist #" + (dummyCount*2),
 						teamTwoID: gameType+"team"+dummyCount*2,
-						teamTwoScore: 0
+						teamTwoScore: 0,
+						dummy: true
 					}
 					result.push(dummy);
 					dummyCount++;
@@ -214,9 +229,57 @@ Template.adminLive.events({
 		Games.update({_id: gameID}, {$inc: {teamOneScore: 1}});
 	},
 
+	'click input.decOne': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		var teamOneScore = $('#teamOneScore').text();
+		Games.update({_id: gameID}, {$set: {teamOneScore: teamOneScore-1}});
+	},
+
 	'click input.scoreTwo': function(event, template) {
 		var gameID = $('#liveGameID').text();
 		Games.update({_id: gameID}, {$inc: {teamTwoScore: 1}});
+	},
+
+	'click input.decTwo': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		var teamTwoScore = $('#teamTwoScore').text();
+		Games.update({_id: gameID}, {$set: {teamTwoScore: teamTwoScore-1}});
+	},
+
+	'click input.setOne': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		Games.update({_id: gameID}, {$inc: {teamOneSetScore: 1}});
+	},
+
+	'click input.decSetOne': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		var teamOneSetScore = $('#teamOneSetScore').text();
+		Games.update({_id: gameID}, {$set: {teamOneSetScore: teamOneSetScore-1}});
+	},
+
+	'click input.setTwo': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		Games.update({_id: gameID}, {$inc: {teamTwoSetScore: 1}});
+	},
+
+	'click input.decSetTwo': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		var teamTwoSetScore = $('#teamTwoSetScore').text();
+		Games.update({_id: gameID}, {$set: {teamTwoSetScore: teamTwoSetScore-1}});
+	},
+
+	'click input.newSet': function(event, template) {
+		var gameID = $('#liveGameID').text();
+		var teamOneScore = $('#teamOneScore').text();
+		var teamTwoScore = $('#teamTwoScore').text();
+		if(teamOneScore > teamTwoScore) {
+			Games.update({_id: gameID}, {$inc: {teamOneSetScore: 1}});
+		} else if(teamTwoScore > teamOneScore) {
+			Games.update({_id: gameID}, {$inc: {teamTwoSetScore: 1}});
+		} else {
+			console.log('Equal Score!')
+		}
+		Games.update({_id: gameID}, {$set: {teamOneScore: 0, teamTwoScore: 0}})
 	}
 });
 

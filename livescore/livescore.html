@@ -38,33 +38,33 @@
 
 <template name="live">
 	<div class="row">
-		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}}</h1></div>
+		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}} - Best of {{livegame.sets}}</h1></div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
-			<h2 class="text-center">{{livegame.teamOne}}</h2>
+			<h2 class="text-center">{{livegame.teamOne}} - {{livegame.teamOneSetScore}}</h2>
 			<h3 class="text-center">{{livegame.teamOneScore}}</h3>
 		</div>
 		<div class="large-6 columns">
-			<h2 class="text-center">{{livegame.teamTwo}}</h2>
+			<h2 class="text-center">{{livegame.teamTwoSetScore}} - {{livegame.teamTwo}}</h2>
 			<h3 class="text-center">{{livegame.teamTwoScore}}</h3>
 		</div>
 	</div>
 
 </template>
 
-<template name="liveGame">
+<template name="viewGame">
 
 	<div class="row">
-		<div class="large-12 columns"><h1 class="text-center">{{game.gameType}}</h1></div>
+		<div class="large-12 columns"><h1 class="text-center">{{game.gameType}} - Best of {{game.sets}}</h1></div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
-			<h2 class="text-center">{{game.teamOne}}</h2>
+			<h2 class="text-center">{{game.teamOne}} - {{game.teamOneSetScore}}</h2>
 			<h3 class="text-center">{{game.teamOneScore}}</h3>
 		</div>
 		<div class="large-6 columns">
-			<h2 class="text-center">{{game.teamTwo}}</h2>
+			<h2 class="text-center">{{game.teamTwoSetScore}} - {{game.teamTwo}}</h2>
 			<h3 class="text-center">{{game.teamTwoScore}}</h3>
 		</div>
 	</div>
@@ -137,14 +137,22 @@
 </template>
 
 <template name="gameListItem">
-	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="/game/{{_id}}">
+	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="{{#if dummy}}/game/notstarted{{else}}/game/{{_id}}{{/if}}">
 		<ul>
-			<li class="team-one team-item {{teamOneID}}" data-id="{{teamOneID}}"><p class="team-name">{{teamOne}}</p><p class="team-score right">{{teamOneScore}}</p></li>
-			<li class="team-two team-item {{teamTwoID}}" data-id="{{teamTwoID}}"><p class="team-name">{{teamTwo}}</p><p class="team-score right">{{teamTwoScore}}</p></li>
+			<li class="team-one team-item {{teamOneID}}" data-id="{{teamOneID}}"><p class="team-name">{{teamOne}}</p><p class="team-score right">{{teamOneSetScore}}</p></li>
+			<li class="team-two team-item {{teamTwoID}}" data-id="{{teamTwoID}}"><p class="team-name">{{teamTwo}}</p><p class="team-score right">{{teamTwoSetScore}}</p></li>
 		</ul>
 	</a></li>
 </template>
 
+<template name="notStartedGame">
+	<div class="row">
+		<div class="large-12 columns">
+			<h1 class="text-center">This game has not started yet!</h1>
+		</div>
+	</div>
+</template>
+<!--
 <template name="viewGame">
 	<div class="row">
 		<div class="row">
@@ -165,7 +173,7 @@
 		</div>
 	</div>
 </template>
-
+-->
 <template name="admin">
 	{{#if currentUser}}
 	<div class="row">
@@ -187,16 +195,28 @@
 			<a href="/admin" class="button tiny">Back</a>
 			<h1>{{livegame.gameType}} at {{livegame.eventLocation}}</h1>
 			<h3>Game id: </h3><h3 id="liveGameID">{{livegame._id}}</h3>
+			<h3># of sets: {{livegame.sets}}</h3>
+			<input class="button tiny newSet" value="New Set" />
 		</div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
-			<h2>{{livegame.teamOne}} - {{livegame.teamOneScore}}</h2>
+			<h2>{{livegame.teamOne}}</h2>
+			<h3>Sets:</h3><h3 id="teamOneSetScore">{{livegame.teamOneSetScore}}</h3>
+			<h3>Score:</h3><h3 id="teamOneScore">{{livegame.teamOneScore}}</h3>
 			<input class="button tiny scoreOne" value="Score" data-name="{{teamOne}}" />
+			<input class="button tiny alert decOne" value="-Score" data-name="{{teamOne}}" />
+			<input class="button tiny setOne" value="Set" data-name="{{teamOne}}" />
+			<input class="button tiny alert decSetOne" value="-Set" />
 		</div>
 		<div class="large-6 columns">
-			<h2>{{livegame.teamTwo}} - {{livegame.teamTwoScore}}</h2>
+			<h2>{{livegame.teamTwo}}</h2>
+			<h3>Sets:</h3><h3 id="teamTwoSetScore">{{livegame.teamTwoSetScore}}</h3>
+			<h3>Score:</h3><h3 id="teamTwoScore">{{livegame.teamTwoScore}}</h3>
 			<input class="button tiny scoreTwo" value="Score" data-name="{{teamTwo}}" />
+			<input class="button tiny alert decTwo" value="-Score" data-name="{{teamTwo}}" />
+			<input class="button tiny setTwo" value="Set" data-name="{{teamTwo}}" />
+			<input class="button tiny alert decSetTwo" value="-Set" />
 		</div>
 	</div>
 	{{else}}
@@ -309,6 +329,11 @@
 						<option value="clarion">Clarion Hotel Post</option>
 					</select>
 				</label>
+				<label># of sets
+					<input type="radio" name="sets" value="1" id="1set"><label for="1set">1 Set</label>
+					<input type="radio" name="sets" value="3" id="3set"><label for="1set">3 Set</label>
+					<input type="radio" name="sets" value="5" id="5set"><label for="1set">5 Set</label>
+				</label>
 				<input type="submit" class="button" value="Create game">
 			</form>
 		</div>
@@ -320,12 +345,12 @@
 
 <template name="editGame">
 	{{#if currentUser}}
-		<div class="row">
+	<div class="row">
 		<div class="large-12 columns">
-		<h1>Edit Game</h1>
+			<h1>Edit Game</h1>
 			<form>
 				<label>ID
-				<input type="text" name="gameID" readonly="readonly" value="{{game._id}}" >
+					<input type="text" name="gameID" readonly="readonly" value="{{game._id}}" >
 				</label>
 				<label>Team 1
 					<select name="teamOne">
@@ -364,11 +389,16 @@
 					</select>
 				</label>
 				<label>Status
-				<select name="status">
-					<option value="pre" {{isSelected "pre" game.status}}>Pre</option>
-					<option value="active" {{isSelected "active" game.status}}>Active</option>
-					<option value="post" {{isSelected "post" game.status}}>Post</option>
-				</select>
+					<select name="status">
+						<option value="pre" {{isSelected "pre" game.status}}>Pre</option>
+						<option value="active" {{isSelected "active" game.status}}>Active</option>
+						<option value="post" {{isSelected "post" game.status}}>Post</option>
+					</select>
+				</label>
+				<label># of sets
+					<input type="radio" name="sets" value="1" id="1set" {{isChecked "1" game.sets}}><label for="1set">1 Set</label>
+					<input type="radio" name="sets" value="3" id="3set" {{isChecked "3" game.sets}}><label for="1set">3 Set</label>
+					<input type="radio" name="sets" value="5" id="5set" {{isChecked "5" game.sets}}><label for="1set">5 Set</label>
 				</label>
 				<input type="submit" class="button" value="Edit game">
 			</form>
@@ -377,10 +407,6 @@
 	{{else}}
 	{{> notLoggedIn}}
 	{{/if}}
-</template>
-
-<template name="gameForm">
-
 </template>
 
 <template name="createTeam">

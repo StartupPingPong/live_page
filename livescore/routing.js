@@ -27,6 +27,11 @@ Router.route('/game/edit/:_id', function() {
 		}});
 });
 
+Router.route('/game/notstarted', function() {
+	console.log("final");
+	this.render('notStartedGame');
+});
+
 Router.route('/game/:_id', function() {
 	this.render('viewGame', {
 		data: function() {
@@ -37,7 +42,7 @@ Router.route('/game/:_id', function() {
 
 Router.route('/admin', function() {
 	this.render('admin');
-})
+});
 
 Router.route('/admin/game', function() {
 	Session.set('eventLocation', 'pustervik');
