@@ -144,7 +144,7 @@
 </template>
 
 <template name="gameListItem">
-	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="{{#if dummy}}/game/notstarted{{else}}/game/{{_id}}{{/if}}">
+	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="/game/{{_id}}">
 		<ul>
 			<li class="team-one team-item {{teamOneID}}" data-id="{{teamOneID}}"><p class="team-name">{{teamOne}}</p><p class="team-score right">{{teamOneSetScore}}</p></li>
 			<li class="team-two team-item {{teamTwoID}}" data-id="{{teamTwoID}}"><p class="team-name">{{teamTwo}}</p><p class="team-score right">{{teamTwoSetScore}}</p></li>
@@ -501,8 +501,6 @@
 		</div>
 	</div>
 </template>
-
-
 
 <template name="notLoggedIn">
 	<div class="row">

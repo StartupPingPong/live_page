@@ -32,12 +32,19 @@ Router.route('/game/notstarted', function() {
 	this.render('notStartedGame');
 });
 
-Router.route('/game/:_id', function() {
-	this.render('viewGame', {
+Router.route('/game/:gameName', function() {
+  var checkFor = "final",
+      gameName = this.params.gameName;
+  // check if the game name includes "final"
+  if ( gameName.indexOf(checkFor) > -1 ) {
+  	this.render("notStartedGame");
+  } else {
+  	this.render('viewGame', {
 		data: function() {
-			templateData = { game: Games.findOne({_id: this.params._id}) };
+			templateData = { game: Games.findOne({_id: gameName}) };
 			return templateData;
 		}});
+  }
 });
 
 Router.route('/admin', function() {
