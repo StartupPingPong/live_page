@@ -26,7 +26,7 @@
 			</nav>
 		</header>
 	</div>
-
+		<div class="background-container"></div>
 </body>
 
 <template name="home">
@@ -38,17 +38,30 @@
 
 <template name="live">
 	{{#if livegame}}
-	<div class="row">
-		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}} - Best of {{livegame.sets}}</h1></div>
+	<div class="row first-row-live">
+		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}}</h1></div>
 	</div>
 	<div class="row">
-		<div class="large-6 columns">
-			<h2 class="text-center">{{livegame.teamOne}} - {{livegame.teamOneSetScore}}</h2>
-			<h3 class="text-center">{{livegame.teamOneScore}}</h3>
+		<div class="large-12 columns"><h2 class="text-center">Best of {{livegame.sets}}</h2></div>
+	</div>
+	<div class="row hide-for-large-up">
+		<div class="small-12 columns">
+			<h2 class="text-center">Sets:</h2>
+			<h3 class="text-center">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
 		</div>
-		<div class="large-6 columns">
-			<h2 class="text-center">{{livegame.teamTwoSetScore}} - {{livegame.teamTwo}}</h2>
-			<h3 class="text-center">{{livegame.teamTwoScore}}</h3>
+	</div>
+	<div class="row">
+		<div class="large-4 columns small-6 columns">
+			<h1 class="text-center">{{livegame.teamOne}}</h1>
+			<h1 class="text-center">{{livegame.teamOneScore}}</h1>
+		</div>
+		<div class="large-4 columns show-for-large-up	">
+			<h2 class="text-center">Sets:</h2>
+			<h3 class="text-center">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
+		</div>
+		<div class="large-4 columns small-6 columns">
+			<h1 class="text-center">{{livegame.teamTwo}}</h1>
+			<h1 class="text-center">{{livegame.teamTwoScore}}</h1>
 		</div>
 	</div>
 	{{else}}
@@ -93,18 +106,18 @@
 </template>
 
 <template name="gamelist">
+
 	<div class="row">
 		<div class="large-12 columns">
 			<ul class="button-group round">
-				<li><a href="#" class="button" data-name="pustervik">Pustervik</a></li>
-				<li><a href="#" class="button" data-name="port">Port Du Soleil</a></li>
-				<li><a href="#" class="button" data-name="park">Park Lane</a></li>
-				<li><a href="#" class="button" data-name="clarion">Clarion Hotel Post</a></li>
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'pustervik'}}" data-name="pustervik">Pustervik</a></li>
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'port'}}" data-name="port">Port Du Soleil</a></li>
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'park'}}" data-name="park">Park Lane</a></li>
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'yaki'}}" data-name="yaki">Yaki-Da</a></li>
 			</ul>
-			<h3 class="text-center">Event: {{currentLocation}}</h3>
 		</div>
 	</div>
-	<div class="row" data-equalizer>
+	<div class="row bracket-games" data-equalizer>
 		<div class="medium-4 columns" data-equalizer-watch>
 			<h2>Quarterfinals</h2>
 			<ul class="quarter-final-games">
@@ -130,8 +143,8 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="large-12 colums">
+	<div class="row group-games">
+		<div class="large-12 columns">
 			<h2>Groupstage</h2>
 			<ul class="group-stage-games">
 				{{#each groupStageGames currentLocation}}
@@ -230,7 +243,7 @@
 				<li><a href="#" class="button location" data-location="pustervik">Pustervik</a></li>
 				<li><a href="#" class="button location" data-location="port">Port Du Soleil</a></li>
 				<li><a href="#" class="button location" data-location="park">Park Lane</a></li>
-				<li><a href="#" class="button location" data-location="clarion">Clarion Hotel Post</a></li>
+				<li><a href="#" class="button location" data-location="yaki">Yaki-Da</a></li>
 			</ul>
 			<h3>Event: {{currentLocation}}</h3>
 		</div>
@@ -320,7 +333,7 @@
 						<option value="pustervik">Pustervik</option>
 						<option value="port">Port Du Soleil</option>
 						<option value="park">Park Lane</option>
-						<option value="clarion">Clarion Hotel Post</option>
+						<option value="yaki">Yaki-Da</option>
 					</select>
 				</label>
 				<label># of sets
@@ -379,7 +392,7 @@
 						<option value="pustervik" {{isSelected "pustervik" game.eventLocation}}>Pustervik</option>
 						<option value="port" {{isSelected "port" game.eventLocation}}>Port Du Soleil</option>
 						<option value="park" {{isSelected "park" game.eventLocation}}>Park Lane</option>
-						<option value="clarion" {{isSelected "clarion" game.eventLocation}}>Clarion Hotel Post</option>
+						<option value="yaki" {{isSelected "yaki" game.eventLocation}}>Yaki-Da</option>
 					</select>
 				</label>
 				<label>Status
@@ -426,7 +439,7 @@
 			<table class="team-list">
 				<thead>
 					<tr>
-						<th>Team</th>
+						<th class="text-right">Team</th>
 						<th>Points</th>
 					</tr>
 				</thead>
@@ -442,7 +455,7 @@
 
 <template name="teamListItem">
 	<tr class="team-list-item">
-		<td>{{name}}</td>
+		<td class="text-right">{{name}}</td>
 		<td>{{totalScore}}</td>
 	</tr>
 </template>

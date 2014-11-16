@@ -191,6 +191,15 @@ if (Meteor.isClient) {
 
 		currentLocation: function() {
 			return Session.get('eventLocation');
+		},
+
+		isCurrentLocation: function(locationOne, locationTwo) {
+			console.log(locationOne + locationTwo)
+			if (locationOne == locationTwo) {
+				return "current-location";
+			} else {
+				return "";
+			}
 		}
 	});
 
@@ -298,7 +307,7 @@ Template.adminTeam.helpers({
 Template.adminTeam.events({
 	'click a': function(event, template) {
 		var teamID = $(event.target).data('id');
-		var newScore = $(event.target.parentNode.previousElementSibling.lastElementChild).val();
+		var newScore = parseInt($(event.target.parentNode.previousElementSibling.lastElementChild).val());
 		if(newScore) {
 			Teams.update({_id: teamID}, {$set: {totalScore: newScore}});
 			$(event.target.parentNode.previousElementSibling.lastElementChild).val('');
@@ -315,7 +324,7 @@ Template.createTeam.events({
 	'submit form': function(event, template) {
 		event.preventDefault();
 		var teamName = event.target.teamName.value;
-		var teamScore = event.target.teamScore.value;
+		var teamScore = parseInt(event.target.teamScore.value);
 		Teams.insert({
 			createdAt: new Date(),
 			name: teamName,

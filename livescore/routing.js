@@ -11,7 +11,7 @@ Router.route ('/live', function() {
 });
 
 Router.route('/game', function() {
-	Session.set('eventLocation', 'pustervik');
+	Session.set('eventLocation', 'yaki');
 	this.render('gamelist');
 });
 
