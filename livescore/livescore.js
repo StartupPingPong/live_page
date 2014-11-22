@@ -9,6 +9,13 @@ if (Meteor.isClient) {
 		}
 	});
 
+	Template.header.events({
+		'click a': function(event, template) {
+			$('.header-link').removeClass('currentLink');
+			$(event.target).addClass('currentLink');
+		}
+	})
+
 	Template.newgame.events({
 
 		'submit form' : function(event, template) {
@@ -146,6 +153,7 @@ if (Meteor.isClient) {
 		},
 		groupStageGames: function(eventLocation) {
 			var result = Games.find({gameType: "Groupstage", eventLocation: eventLocation})
+			console.log(result)
 			return result;
 		},
 
@@ -155,14 +163,14 @@ if (Meteor.isClient) {
 			var maxCount = 0;
 			switch (gameType) {
 				case "Quarter":
-					maxCount = 5;
-					break;
+				maxCount = 5;
+				break;
 				case "Semi":
-					maxCount = 3;
-					break;
+				maxCount = 3;
+				break;
 				case "Grand":
-					maxCount = 2;
-					break;
+				maxCount = 2;
+				break;
 			}
 			if(result.length < maxCount) {
 				while(dummyCount < maxCount) {
@@ -194,7 +202,6 @@ if (Meteor.isClient) {
 		},
 
 		isCurrentLocation: function(locationOne, locationTwo) {
-			console.log(locationOne + locationTwo)
 			if (locationOne == locationTwo) {
 				return "current-location";
 			} else {
@@ -297,6 +304,9 @@ Template.totalScore.helpers({
 		return Teams.find({}, {sort: {totalScore: -1}});
 	}
 });
+
+Template.teamListItem.helpers({
+})
 
 Template.adminTeam.helpers({
 	teams: function() {

@@ -15,7 +15,7 @@ body {
 	background-position: center;
 	opacity: 0.2;
 	z-index: -1;
-	height: 110%;
+	height: 100%;
 	position: absolute;
 	top: 4em;
 	width: 100%;
@@ -34,13 +34,80 @@ h1, h2, h3, h4, h5, h6 {
 	color: white;
 }
 
+/* Header */
+
+header {
+	height: 4em;
+}
+
+.top-bar {
+	background: none;
+	margin-top: 1em;
+	height: 4em;
+}
+
+.top-bar-section {
+	text-align: center;
+}
+
+.top-bar-section .header-links {
+	display: inline-block;
+}
+
+.header-links li {
+	background: none !important;
+}
+
+.top-bar-section ul li {
+	display: inline-block;
+}
+
+.top-bar-section ul li>a {
+	font-family: 'League Gothic';
+	color: white;
+	font-size: 1.5rem;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.header-links li:not(.has-form) a:not(.button) {
+	background: none;
+}
+
+.top-bar-section ul li:hover:not(.has-form)>a {
+	background-color: transparent;
+	background: none;
+	
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+	background: none;
+	background-color: transparent;
+	border-bottom: 2px solid white;
+}
+
+.currentLink {
+	border-bottom: 2px solid white;
+}
+
 /* Live */
 
 .first-row-live {
-	margin-top: 9em;
+	margin-top: 5em;
+}
+
+.first-row-live h1 {
+	font-size: 4rem;
+}
+
+.team-name-live {
+	font-size: 4rem;
 }
 
 /* Gamelist */
+
+.first-row-gamelist {
+	margin-top: 2em;
+}
 
 .bracket-games h2 {
 	margin-top: 1em;
@@ -200,6 +267,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 3rem;
 	border-bottom: 1px solid white;
 	line-height: 2.5rem;
+}
+
+.team-list-item-data {
+	width: 4em;
 }
 
 @media only screen and (max-width: 40em) { 

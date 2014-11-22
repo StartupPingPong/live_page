@@ -4,30 +4,29 @@
 
 <body>
 	<div class="container">
-		<header>
+		{{>header}}
+	</div>
+		<div class="background-container"></div>
+</body>
+
+<template name="header">
+	<header>
 			<nav class="top-bar" role="navigation">
-				<ul class="title-area">
-					<li class="name">
-						<h1><a href="/">SUPP</a></h1>
-					</li>
-				</ul>
 				<section class="top-bar-section">
-					<ul class="right">
-						<li><a href="/game">Game List</a></li>
-						<li><a href="/live">Live</a></li>
-						<li><a href="/total">Total Score</a></li>
+					<ul class="header-links">
+						<li><a class="header-link" href="/game">Game List</a></li>
+						<li><a class="header-link" href="/live">Live</a></li>
+						<li><a class="header-link" href="/total">Total Score</a></li>
 						{{#if currentUser}}
-						<li><a href="/admin/game">Admin Game List</a></li>
-						<li><a href="/admin/live">Admin Live</a></li>
-						<li><a href="/admin/team">Admin Team</a></li>
+						<li><a class="header-link" href="/admin/game">Admin Game List</a></li>
+						<li><a class="header-link" href="/admin/live">Admin Live</a></li>
+						<li><a class="header-link" href="/admin/team">Admin Team</a></li>
 						{{/if}}
 					</ul>
 				</section>
 			</nav>
 		</header>
-	</div>
-		<div class="background-container"></div>
-</body>
+</template>
 
 <template name="home">
 	<div class="row">
@@ -52,7 +51,7 @@
 	</div>
 	<div class="row">
 		<div class="large-4 columns small-6 columns">
-			<h1 class="text-center">{{livegame.teamOne}}</h1>
+			<h1 class="text-center team-name-live">{{livegame.teamOne}}</h1>
 			<h1 class="text-center">{{livegame.teamOneScore}}</h1>
 		</div>
 		<div class="large-4 columns show-for-large-up	">
@@ -60,7 +59,7 @@
 			<h3 class="text-center">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
 		</div>
 		<div class="large-4 columns small-6 columns">
-			<h1 class="text-center">{{livegame.teamTwo}}</h1>
+			<h1 class="text-center team-name-live">{{livegame.teamTwo}}</h1>
 			<h1 class="text-center">{{livegame.teamTwoScore}}</h1>
 		</div>
 	</div>
@@ -107,7 +106,7 @@
 
 <template name="gamelist">
 
-	<div class="row">
+	<div class="row first-row-gamelist">
 		<div class="large-12 columns">
 			<ul class="button-group round">
 				<li><a href="#" class="button {{isCurrentLocation currentLocation 'pustervik'}}" data-name="pustervik">Pustervik</a></li>
@@ -147,9 +146,13 @@
 		<div class="large-12 columns">
 			<h2>Groupstage</h2>
 			<ul class="group-stage-games">
+				{{#if groupStageGames currentLocation}}
 				{{#each groupStageGames currentLocation}}
 				{{>gameListItem}}
 				{{/each}}
+				{{else}}
+				<h1 class="text-center">No Groupstage games at the momend</h1>
+				{{/if}}
 			</ul>
 		</div>
 	</div>
@@ -455,8 +458,8 @@
 
 <template name="teamListItem">
 	<tr class="team-list-item">
-		<td class="text-right">{{name}}</td>
-		<td>{{totalScore}}</td>
+		<td class="text-right team-list-item-data">{{name}}</td>
+		<td class="team-list-item-data">{{totalScore}}</td>
 	</tr>
 </template>
 
