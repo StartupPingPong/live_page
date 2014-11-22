@@ -42,6 +42,20 @@ input {
 	text-align: center;
 }
 
+table tr td {
+	color: white;
+	background: transparent;
+
+}
+
+.button {
+	font-family: 'League Gothic';
+	background: black;
+	border-radius: 0.5em;
+	border: 1px solid white;
+	padding: 0.5em;
+}
+
 /* Header */
 
 header {
@@ -410,13 +424,38 @@ header {
 
 .accounts-dialog {
 	width: 50%;
-margin: 0 auto;
-margin-top: 1em;
+	margin: 0 auto;
+	margin-top: 1em;
 }
 
 .login-old-password-label-and-input {
 	margin-top: 1em;
 }
+
+/* Teamlist */
+
+.admin-team-list {
+}
+
+.admin-team-list th {
+	font-size: 2rem !important;
+}
+
+.admin-team-list tr,
+.admin-team-list tr:nth-of-type(even) {
+	background: transparent;
+}
+
+.admin-team-list .postfix.button {
+	border: 1px solid white;
+	border-top-right-radius: 0.5em;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 0.5em;
+	border-left: none;
+}
+
+
 
 
 @media only screen and (max-width: 40em) { 
