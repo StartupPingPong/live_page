@@ -3,37 +3,46 @@
 </head>
 
 <body>
+<div class="background-container"></div>
 	<div class="container">
 		{{>header}}
 	</div>
-		<div class="background-container"></div>
+	
 </body>
+
+<template name="home">
+	<div class="game-list-container">
+		<h1 class="text-center">The Games</h1>
+		{{> gamelist}}
+	</div>
+	<div class="live-game-container">
+		<h1 class="text-center">The Live Game</h1>
+		{{> live}}
+	</div>
+	<div class="total-score-container">
+		<h1 class="text-center">The standings</h1>
+		{{> totalScore}}
+	</div>
+</template>
 
 <template name="header">
 	<header>
-			<nav class="top-bar" role="navigation">
-				<section class="top-bar-section">
-					<ul class="header-links">
-						<li><a class="header-link" href="/game">Game List</a></li>
-						<li><a class="header-link" href="/live">Live</a></li>
-						<li><a class="header-link" href="/total">Total Score</a></li>
-						{{#if currentUser}}
-						<li><a class="header-link" href="/admin/game">Admin Game List</a></li>
-						<li><a class="header-link" href="/admin/live">Admin Live</a></li>
-						<li><a class="header-link" href="/admin/team">Admin Team</a></li>
-						{{/if}}
-					</ul>
-				</section>
-			</nav>
-		</header>
-</template>
-
-<template name="home">
-	<div class="row">
-		<div class="large-12 columns">
-		</div>
-	</div>
-</template>
+		<nav class="top-bar" role="navigation">
+			<section class="top-bar-section">
+				<ul class="header-links">
+					<li><a class="header-link" href="/game">Game List</a></li>
+					<li><a class="header-link" href="/live">Live</a></li>
+					<li><a class="header-link" href="/total">Total Score</a></li>
+					{{#if currentUser}}
+					<li><a class="header-link" href="/admin/game">Admin Game List</a></li>
+					<li><a class="header-link" href="/admin/live">Admin Live</a></li>
+					<li><a class="header-link" href="/admin/team">Admin Team</a></li>
+					{{/if}}
+				</ul>
+			</section>
+		</nav>
+	</header>
+</template>	
 
 <template name="live">
 	{{#if livegame}}
