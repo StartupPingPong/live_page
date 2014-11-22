@@ -1,8 +1,8 @@
 /* CSS declarations go here */
 
 @font-face{
-  font-family:'League Gothic';
-  src: url(//:) format ('no404'), url('LeagueGotic-Regular.otf') format('opentype'); /* tricky! */
+	font-family:'League Gothic';
+	src: url(//:) format ('no404'), url('LeagueGotic-Regular.otf') format('opentype'); /* tricky! */
 }
 
 body {
@@ -32,6 +32,14 @@ li a {
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'League Gothic';
 	color: white;
+}
+
+label {
+	color: white;
+}
+
+input {
+	text-align: center;
 }
 
 /* Header */
@@ -308,6 +316,108 @@ header {
 .team-list-item-data {
 	width: 4em;
 }
+
+/* Admin */
+
+/* Login */
+
+#login-dropdown-list {
+	margin-top: 1em;
+}
+
+.login-form {
+	margin-top: 1em;
+}
+
+.login-link-text {
+	color: white;
+	font-size: 1.5rem;
+}
+
+.login-close-text {
+	background: red;
+	padding: 0.3em;
+	color: white;
+	border-radius: 0.4em;
+	border: 1px solid white;
+}
+
+.login-close-text:hover {
+	box-shadow: 0px 0px 7px 4px red;
+}
+
+#login-username {
+	text-align: center;
+}
+
+#login-password {
+	text-align: center;
+}
+
+#login-username-label {
+	color: white;
+	font-size: 1rem;
+}
+
+#login-password-label {
+	color: white;
+	font-size: 1rem;
+}
+
+
+.login-button {
+	padding: 0.3em;
+	background: black;
+	color: white;
+	border-radius: 0.4em;
+	border: 1px solid white;
+	display: inline-block;
+	margin: 0.5em;
+}
+
+.login-button:hover,
+#signup-link:hover {
+	background: white;
+	color: black;
+	border-color: black;
+	cursor: pointer;
+}
+
+.login-button-form-submit:hover {
+	box-shadow: 0px 0px 7px 4px green;
+	border-color: white;
+}
+
+.additional-link-container {
+	margin-top: 1em;
+}
+
+.login-button-form-submit:hover {
+	background: green;
+	width: auto;
+	border-radius: 0.4em;
+	display: inline-block;
+	color: white;
+}
+
+#signup-link {
+	padding: 0.3em;
+	background: black;
+	color: white;
+	border-radius: 0.4em;
+	border: 1px solid white;
+}
+
+.accounts-dialog {
+	width: 50%;
+margin: 0 auto;
+margin-top: 1em;
+}
+
+.login-old-password-label-and-input {
+	margin-top: 1em;
+}
+
 
 @media only screen and (max-width: 40em) { 
 	.quarter-final-games>*,
