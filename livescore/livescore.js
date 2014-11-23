@@ -119,12 +119,24 @@ if (Meteor.isClient) {
 		},
 		currentLocation: function() {
 			return Session.get('eventLocation');
+		},
+
+		currentLocation: function() {
+			return Session.get('eventLocation');
+		},
+
+		isCurrentLocation: function(locationOne, locationTwo) {
+			if (locationOne == locationTwo) {
+				return "current-location";
+			} else {
+				return "";
+			}
 		}
 	});
 
 	Template.adminGameList.events({
 		'click a.location': function(event, template) {
-			var eventLocation = $(event.target).data('location');
+			var eventLocation = $(event.target).data('name');
 			Session.set('eventLocation', eventLocation);
 		},
 		'click input.delete': function () {

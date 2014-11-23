@@ -1,4 +1,5 @@
 Router.route('/', function() {
+	Session.set('eventLocation', 'yaki');
 	this.render('home');
 });
 

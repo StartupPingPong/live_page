@@ -434,11 +434,28 @@ header {
 
 /* Teamlist */
 
+.team-column {
+	text-align: center;
+}
+
 .admin-team-list {
+	background: rgba(0,0,0,0.7);
+	border: 1px solid white;
 }
 
 .admin-team-list th {
 	font-size: 2rem !important;
+}
+
+.admin-team-list td {
+	font-size: 1.5rem;
+	padding: 0.1em;
+	text-align: center;
+}
+
+.admin-team-list form,
+.admin-team-list input {
+	margin-bottom: 0;
 }
 
 .admin-team-list tr,
@@ -453,9 +470,85 @@ header {
 	border-top-left-radius: 0;
 	border-bottom-right-radius: 0.5em;
 	border-left: none;
+	margin: 0;
 }
 
+.admin-team-list .score-input {
+	margin: 0;
+}
 
+/* Create Team */
+
+.create-team-form {
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* AdminLive */
+
+.admin-live-info {
+
+}
+
+.admin-live-info h3 {
+	display: inline-block;
+}
+
+.admin-live-info .sets-container {
+	display: block;
+}
+
+.admin-live-score {
+
+}
+
+.admin-live-score h3 {
+	display: inline-block;
+}
+
+.admin-live-score .button {
+	padding: 0;
+	font-size: 1rem;
+}
+
+/* AdminGameList */
+
+.admin-game-list-item {
+	color: white;
+	font-family: 'League Gothic';
+	font-size: 1.4rem;
+	padding: 0.5em;
+	border: 1px solid white;
+	border-radius: 0.5em;
+	background: rgba(0,0,0,0.7);
+	display: inline-block;
+	margin-bottom: 1em;
+}
+
+.admin-game-list-item a,
+.admin-game-list-item input {
+	margin-bottom: 0.5em;
+}
+
+.admin-game-list-item .status-group {
+	display: inline;
+}
+
+.admin-game-list-item .status-group>li .button {
+	border-color: white !important;
+}
+
+.admin-game-list-item .status-group>li:first-child .button {
+	border: 1px solid;
+}
+
+/* Create game */
+.create-edit-game-form {
+	margin: 0 auto;
+	text-align: center;
+	width: 50%;
+}
 
 
 @media only screen and (max-width: 40em) { 
