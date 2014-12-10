@@ -1,12 +1,24 @@
-/* CSS declarations go here */
+ /* CSS declarations go here */
+@font-face {
+    font-family: 'league_gothicregular';
+    src: url('leaguegothic-regular-webfont.eot');
+    src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-regular-webfont.woff2') format('woff2'),
+         url('leaguegothic-regular-webfont.woff') format('woff'),
+         url('leaguegothic-regular-webfont.ttf') format('truetype'),
+         url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
-@font-face{
-	font-family:'League Gothic';
-	src: url(//:) format ('no404'), url('LeagueGotic-Regular.otf') format('opentype'); /* tricky! */
 }
 
 body {
 	background-color: black;
+}
+
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 .background-container {
@@ -30,7 +42,7 @@ li a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	color: white;
 }
 
@@ -49,7 +61,7 @@ table tr td {
 }
 
 .button {
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	background: black;
 	border-radius: 0.5em;
 	border: 1px solid white;
@@ -85,7 +97,7 @@ header {
 }
 
 .top-bar-section ul li>a {
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	color: white;
 	font-size: 1.5rem;
 	padding: 0.5em 0.5em 0.5em 0.5em;
@@ -190,7 +202,7 @@ header {
 .semi-final-games ul,
 .grand-final-games ul,
 .group-stage-games ul {
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	background-color: black;
 	color: white;
 	border: 1px solid white;
@@ -267,7 +279,7 @@ header {
 }
 
 .button {
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 }
 
 .button-group {
@@ -297,7 +309,7 @@ header {
 .team-list {
 	border: none;
 	background: none;
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	width: initial;
 	margin: 0 auto;
 	margin-top: 3em;
@@ -328,7 +340,7 @@ header {
 }
 
 .team-list-item-data {
-	width: 4em;
+	width: 5em;
 }
 
 /* Admin */
@@ -516,7 +528,7 @@ header {
 
 .admin-game-list-item {
 	color: white;
-	font-family: 'League Gothic';
+	font-family: 'league_gothicregular';
 	font-size: 1.4rem;
 	padding: 0.5em;
 	border: 1px solid white;

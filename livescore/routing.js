@@ -34,17 +34,17 @@ Router.route('/game/notstarted', function() {
 });
 
 Router.route('/game/:gameName', function() {
-  var checkFor = "final",
-      gameName = this.params.gameName;
+	var checkFor = "final",
+	gameName = this.params.gameName;
   // check if the game name includes "final"
   if ( gameName.indexOf(checkFor) > -1 ) {
   	this.render("notStartedGame");
   } else {
   	this.render('viewGame', {
-		data: function() {
-			templateData = { game: Games.findOne({_id: gameName}) };
-			return templateData;
-		}});
+  		data: function() {
+  			templateData = { game: Games.findOne({_id: gameName}) };
+  			return templateData;
+  		}});
   }
 });
 

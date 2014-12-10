@@ -1,6 +1,22 @@
 Teams = new Mongo.Collection("teams");
 Games = new Mongo.Collection("games");
 
+Meteor.startup(function() {
+	if(Meteor.isClient) {
+		return SEO.config({
+			title: 'Startup Ping Pong Livescore',
+			meta: {
+				'description': 'Startup Ping Pong is a table tennis league where startups compete of being the national Startup Ping Pong master.'
+			},
+			og: {
+				'image': 'http://supp.meteor.com/fb-img.jpg',
+				'image:type': 'image/png',
+				'image:width': '1200',
+				'image:height': '630'
+			}
+		});
+	}
+});
 
 if (Meteor.isClient) {
 	Template.newgame.helpers({
