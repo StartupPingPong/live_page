@@ -170,6 +170,14 @@ header {
 	font-size: 4rem;
 }
 
+.set-score {
+	font-size: 3rem;
+}
+
+.team-score-live {
+	font-size: 3rem;
+}
+
 /* Gamelist */
 
 .first-row-gamelist {
