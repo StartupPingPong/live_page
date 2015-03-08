@@ -1,5 +1,5 @@
 Router.route('/', function() {
-	Session.set('eventLocation', 'yaki');
+	Session.set('eventLocation', 'pustervik');
 	this.render('home');
 });
 
@@ -12,7 +12,7 @@ Router.route ('/live', function() {
 });
 
 Router.route('/game', function() {
-	Session.set('eventLocation', 'yaki');
+	Session.set('eventLocation', 'pustervik');
 	this.render('gamelist');
 });
 

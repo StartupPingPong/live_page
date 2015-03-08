@@ -333,6 +333,16 @@ Template.totalScore.helpers({
 	}
 });
 
+Template.viewGame.helpers({
+	location: function(locationName) {
+		if (locationName == "pustervik") {
+			return "Pustervik"
+		} else if(locationName == "push") {
+			return "PUSH"
+		}
+	}
+})
+
 Template.teamListItem.helpers({
 })
 
@@ -343,12 +353,16 @@ Template.adminTeam.helpers({
 });
 
 Template.adminTeam.events({
-	'click a': function(event, template) {
-		var teamID = $(event.target).data('id');
-		var newScore = parseInt($(event.target.parentNode.previousElementSibling.lastElementChild).val());
-		if(newScore) {
-			Teams.update({_id: teamID}, {$set: {totalScore: newScore}});
-			$(event.target.parentNode.previousElementSibling.lastElementChild).val('');
+	'click input.inc-point': function(event, template) {
+		var teamID = $(event.target).attr('id');
+		Teams.update({_id: teamID}, {$inc: {totalScore: 1}})
+	},
+
+	'click input.dec-point': function(event, template) {
+		var teamID = $(event.target).attr('id');
+		var score = Teams.findOne(teamID).totalScore;
+		if(score > 0) {
+			Teams.update({_id: teamID}, {$inc: {totalScore: -1}})
 		}
 	},
 

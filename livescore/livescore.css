@@ -1,596 +1,661 @@
- /* CSS declarations go here */
-@font-face {
-    font-family: 'league_gothicregular';
-    src: url('leaguegothic-regular-webfont.eot');
-    src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('leaguegothic-regular-webfont.woff2') format('woff2'),
-         url('leaguegothic-regular-webfont.woff') format('woff'),
-         url('leaguegothic-regular-webfont.ttf') format('truetype'),
-         url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-body {
-	background-color: black;
-}
-
-
-::-webkit-scrollbar { 
-    display: none; 
-}
-
-.background-container {
-	background: url('/supp-logo-white.jpg');
-	background-repeat: no-repeat;
-	background-position: center;
-	opacity: 0.2;
-	z-index: -1;
-	height: 110%;
-	position: absolute;
-	top: 4em;
-	width: 100%;
-}
-
-ul {
-	margin: 0;
-}
-
-li a {
-	color: inherit;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'league_gothicregular';
-	color: white;
-}
-
-label {
-	color: white;
-}
-
-input {
-	text-align: center;
-}
-
-table tr td {
-	color: white;
-	background: transparent;
-
-}
-
-.button {
-	font-family: 'league_gothicregular';
-	background: black;
-	border-radius: 0.5em;
-	border: 1px solid white;
-	padding: 0.5em;
-}
-
-/* Header */
-
-header {
-	height: 4em;
-}
-
-.top-bar {
-	background: none;
-	margin-top: 1em;
-	height: 4em;
-}
-
-.top-bar-section {
-	text-align: center;
-}
-
-.top-bar-section .header-links {
-	display: inline-block;
-}
-
-.header-links li {
-	background: none !important;
-}
-
-.top-bar-section ul li {
-	display: inline-block;
-}
-
-.top-bar-section ul li>a {
-	font-family: 'league_gothicregular';
-	color: white;
-	font-size: 1.5rem;
-	padding: 0.5em 0.5em 0.5em 0.5em;
-}
-
-.header-links li:not(.has-form) a:not(.button) {
-	background: none;
-}
-
-.top-bar-section ul li:hover:not(.has-form)>a {
-	background-color: transparent;
-	background: none;
-	
-}
-
-.top-bar-section li:not(.has-form) a:not(.button):hover {
-	background: none;
-	background-color: transparent;
-	border-bottom: 2px solid white;
-}
-
-.currentLink {
-	border-bottom: 2px solid white;
-}
-
-/* Home */
-.game-list-container {
-	border-bottom: 2px solid white;
-	padding-bottom: 3em;
-}
-
-.game-list-container h1 {
-	text-decoration: underline;
-}
-
-.live-game-container {
-	border-bottom: 2px solid white;
-	margin-top: 3em;
-	padding-bottom: 3em;
-}
-
-.live-game-container .first-row-live {
-	margin-top: 2em;
-}
-
-.live-game-container h1 {
-	text-decoration: underline;
-}
-
-.total-score-container {
-	margin-top: 3em;
-	padding-bottom: 3em;
-}
-
-.total-score-container h1 {
-	text-decoration: underline;
-}
-
-/* Live */
-
-.first-row-live {
-	margin-top: 5em;
-}
-
-.first-row-live h1 {
-	font-size: 4rem;
-}
-
-.team-name-live {
-	font-size: 4rem;
-}
-
-.set-score {
-	font-size: 3rem;
-}
-
-.team-score-live {
-	font-size: 3rem;
-}
-
-/* Gamelist */
-
-.first-row-gamelist {
-	margin-top: 2em;
-}
-
-.bracket-games h2 {
-	margin-top: 1em;
-	text-align: center;
-}
-
-.group-games h2 {
-	margin-top: 1em;
-	text-align: center;
-}
-
-.quarter-final-games,
-.semi-final-games,
-.grand-final-games,
-.group-stage-games {
-	list-style: none;
-}
-
-.quarter-final-games>*,
-.group-stage-games>* {
-	margin-bottom: 1em;
-}
-
-.quarter-final-games ul,
-.semi-final-games ul,
-.grand-final-games ul,
-.group-stage-games ul {
-	font-family: 'league_gothicregular';
-	background-color: black;
-	color: white;
-	border: 1px solid white;
-}
-
-.quarter-final-games ul:hover,
-.semi-final-games ul:hover, 
-.grand-final-games ul:hover, 
-.group-stage-games ul:hover  {
-	background-color: white;
-	color: black;
-}
-
-.semi-final-games {
-	margin-top: 3.55em;
-}
-
-.semi-final-games > :last-child {
-	margin-top: 7.3em;
-}
-
-.grand-final-games {
-	margin-top: 9.8em;
-}
-
-.game-list-item {
-	list-style: none;
-}
-
-.game-list-item ul {
-	list-style: none;
-	margin: 0;
-}
-
-.game-list-item ul .team-one {
-	border-bottom: 1px solid;
-}
-
-.team-name {
-	display: inline-block;
-	margin: 0.5em 1em 0.5em 1em;
-	padding: 0;
-}
-
-.team-score {
-	display: inline-block;
-	margin: 0.5em 1em 0.5em 1em;
-	padding: 0;	
-}
-
-.mouse-on {
-	-webkit-box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
-	-moz-box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
-	box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
-	background-color: white;
-	color: black;
-}
-
-.status-pre {
-	background-color: rgba(189,183,107,0.8);
-}
-
-.status-active {
-	background-color: rgba(34,139,34,0.8);
-}
-
-.status-post {
-	background-color: rgba(255,0,0,0.8);
-}
-
-.current-location {
-	background-color: white !important;
-	color: black !important;
-}
-
-.button {
-	font-family: 'league_gothicregular';
-}
-
-.button-group {
-	text-align: center;
-}
-
-.button-group.round>* .button {
-	background-color: black;
-	border: 1px solid white;
-	margin: 1em 0em 1em 0em;
-}
-
-.button-group.round>* .button {
-	border-bottom: 1px solid white;
-	border-left: 1px solid white;
-	border-top: 1px solid white;
-}
-
-.button-group.round>* .button:last-child {
-	border-bottom: 1px solid white;
-	border-left: 1px solid white;
-	border-top: 1px solid white;
-	border-right: 1px solid white;
-}
-
-/* Team List */
-.team-list {
-	border: none;
-	background: none;
-	font-family: 'league_gothicregular';
-	width: initial;
-	margin: 0 auto;
-	margin-top: 3em;
-}
-
-.team-list thead {
-	background: none;
-}
-
-.team-list thead tr th {
-	color: white;
-	font-size: 4rem;
-	line-height: 3rem;
-	font-weight: normal;
-	padding-bottom: 0.5em;
-
-}
-
-.team-list .team-list-item {
-	background: none;
-}
-
-.team-list .team-list-item td {
-	color: white;
-	font-size: 3rem;
-	border-bottom: 1px solid white;
-	line-height: 2.5rem;
-}
-
-.team-list-item-data {
-	width: 5em;
-}
-
-/* Admin */
-
-/* Login */
-
-#login-dropdown-list {
-	margin-top: 1em;
-}
-
-.login-form {
-	margin-top: 1em;
-}
-
-.login-link-text {
-	color: white;
-	font-size: 1.5rem;
-}
-
-.login-close-text {
-	background: red;
-	padding: 0.3em;
-	color: white;
-	border-radius: 0.4em;
-	border: 1px solid white;
-}
-
-.login-close-text:hover {
-	box-shadow: 0px 0px 7px 4px red;
-}
-
-#login-username {
-	text-align: center;
-}
-
-#login-password {
-	text-align: center;
-}
-
-#login-username-label {
-	color: white;
-	font-size: 1rem;
-}
-
-#login-password-label {
-	color: white;
-	font-size: 1rem;
-}
-
-
-.login-button {
-	padding: 0.3em;
-	background: black;
-	color: white;
-	border-radius: 0.4em;
-	border: 1px solid white;
-	display: inline-block;
-	margin: 0.5em;
-}
-
-.login-button:hover,
-#signup-link:hover {
-	background: white;
-	color: black;
-	border-color: black;
-	cursor: pointer;
-}
-
-.login-button-form-submit:hover {
-	box-shadow: 0px 0px 7px 4px green;
-	border-color: white;
-}
-
-.additional-link-container {
-	margin-top: 1em;
-}
-
-.login-button-form-submit:hover {
-	background: green;
-	width: auto;
-	border-radius: 0.4em;
-	display: inline-block;
-	color: white;
-}
-
-#signup-link {
-	padding: 0.3em;
-	background: black;
-	color: white;
-	border-radius: 0.4em;
-	border: 1px solid white;
-}
-
-.accounts-dialog {
-	width: 50%;
-	margin: 0 auto;
-	margin-top: 1em;
-}
-
-.login-old-password-label-and-input {
-	margin-top: 1em;
-}
-
-/* Teamlist */
-
-.team-column {
-	text-align: center;
-}
-
-.admin-team-list {
-	background: rgba(0,0,0,0.7);
-	border: 1px solid white;
-}
-
-.admin-team-list th {
-	font-size: 2rem !important;
-}
-
-.admin-team-list td {
-	font-size: 1.5rem;
-	padding: 0.1em;
-	text-align: center;
-}
-
-.admin-team-list form,
-.admin-team-list input {
-	margin-bottom: 0;
-}
-
-.admin-team-list tr,
-.admin-team-list tr:nth-of-type(even) {
-	background: transparent;
-}
-
-.admin-team-list .postfix.button {
-	border: 1px solid white;
-	border-top-right-radius: 0.5em;
-	border-bottom-left-radius: 0;
-	border-top-left-radius: 0;
-	border-bottom-right-radius: 0.5em;
-	border-left: none;
-	margin: 0;
-}
-
-.admin-team-list .score-input {
-	margin: 0;
-}
-
-/* Create Team */
-
-.create-team-form {
-	width: 50%;
-	text-align: center;
-	margin: 0 auto;
-}
-
-/* AdminLive */
-
-.admin-live-info {
-
-}
-
-.admin-live-info h3 {
-	display: inline-block;
-}
-
-.admin-live-info .sets-container {
-	display: block;
-}
-
-.admin-live-score {
-
-}
-
-.admin-live-score h3 {
-	display: inline-block;
-}
-
-.admin-live-score .button {
-	padding: 0;
-	font-size: 1rem;
-}
-
-/* AdminGameList */
-
-.admin-game-list-item {
-	color: white;
-	font-family: 'league_gothicregular';
-	font-size: 1.4rem;
-	padding: 0.5em;
-	border: 1px solid white;
-	border-radius: 0.5em;
-	background: rgba(0,0,0,0.7);
-	display: inline-block;
-	margin-bottom: 1em;
-}
-
-.admin-game-list-item a,
-.admin-game-list-item input {
-	margin-bottom: 0.5em;
-}
-
-.admin-game-list-item .status-group {
-	display: inline;
-}
-
-.admin-game-list-item .status-group>li .button {
-	border-color: white !important;
-}
-
-.admin-game-list-item .status-group>li:first-child .button {
-	border: 1px solid;
-}
-
-/* Create game */
-.create-edit-game-form {
-	margin: 0 auto;
-	text-align: center;
-	width: 50%;
-}
-
-
-@media only screen and (max-width: 40em) { 
-	.quarter-final-games>*,
-	.semi-final-games,
-	.semi-final-games > :last-child,
-	.grand-final-games,
-	.group-stage-games {
-		margin-top: 1em;
-	}
-
-	.button-group.round>* .button {
-		font-size: 0.7rem;
-		padding: 1em 1em 1em 1em;
-	}
-
-	.first-row-live {
-		margin-top: 3em;
-	}
-
-	.background-container {
-		background-size: 100% auto;
-	}
-
-}
+	 /* CSS declarations go here */
+	 @font-face {
+	 	font-family: 'league_gothicregular';
+	 	src: url('leaguegothic-regular-webfont.eot');
+	 	src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	 	url('leaguegothic-regular-webfont.woff2') format('woff2'),
+	 	url('leaguegothic-regular-webfont.woff') format('woff'),
+	 	url('leaguegothic-regular-webfont.ttf') format('truetype'),
+	 	url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+	 	font-weight: normal;
+	 	font-style: normal;
+
+	 }
+
+	 body {
+	 	background-color: black;
+	 }
+
+
+	 ::-webkit-scrollbar { 
+	 	display: none; 
+	 }
+
+	 .background-container {
+	 	background: url('/supp-logo-white.jpg');
+	 	background-repeat: no-repeat;
+	 	background-position: center;
+	 	opacity: 0.2;
+	 	z-index: -1;
+	 	height: 110%;
+	 	position: absolute;
+	 	top: 4em;
+	 	width: 100%;
+	 }
+
+	 ul {
+	 	margin: 0;
+	 }
+
+	 li a {
+	 	color: inherit;
+	 }
+
+	 h1, h2, h3, h4, h5, h6 {
+	 	font-family: 'league_gothicregular';
+	 	color: white;
+	 }
+
+	 label {
+	 	color: white;
+	 }
+
+	 input {
+	 	text-align: center;
+	 }
+
+	 table tr td {
+	 	color: white;
+	 	background: transparent;
+
+	 }
+
+	 .button {
+	 	font-family: 'league_gothicregular';
+	 	background: black;
+	 	border-radius: 0.5em;
+	 	border: 1px solid white;
+	 	padding: 0.5em;
+	 }
+
+	 /* Header */
+
+	 header {
+	 	height: auto;
+	 }
+
+	 .top-bar {
+	 	background: none;
+	 	margin-top: 1em;
+	 	height: auto;
+	 }
+
+	 .top-bar-section {
+	 	text-align: center;
+	 }
+
+	 .top-bar-section .header-links {
+	 	display: inline-block;
+	 }
+
+	 .header-links li {
+	 	background: none !important;
+	 }
+
+	 .top-bar-section ul li {
+	 	display: inline-block;
+	 	background: none;
+	 }
+
+	 .top-bar-section ul li>a {
+	 	font-family: 'league_gothicregular';
+	 	color: white;
+	 	font-size: 1.5rem;
+	 	padding: 0.5em 0.5em 0.5em 0.5em;
+	 	border-bottom: 2px solid transparent;
+	 }
+
+	 .header-links li:not(.has-form) a:not(.button) {
+	 	background: none;
+	 }
+
+	 .top-bar-section ul li:hover:not(.has-form)>a {
+	 	background-color: transparent;
+	 	background: none;
+
+	 }
+
+	 .top-bar-section li:not(.has-form) a:not(.button):hover {
+	 	background: none;
+	 	background-color: transparent;
+	 	border-bottom: 2px solid white;
+	 }
+
+	 .currentLink {
+	 	border-bottom: 2px solid white !important;
+	 }
+
+	 /* Home */
+	 .game-list-container {
+	 	border-bottom: 2px solid white;
+	 	padding-bottom: 3em;
+	 }
+
+	 .game-list-container h1 {
+	 	text-decoration: underline;
+	 }
+
+	 .live-game-container {
+	 	border-bottom: 2px solid white;
+	 	margin-top: 3em;
+	 	padding-bottom: 3em;
+	 }
+
+	 .live-game-container .first-row-live {
+	 	margin-top: 2em;
+	 }
+
+	 .first-page-header {
+	 	text-decoration: underline;
+	 }
+
+	 .total-score-container {
+	 	margin-top: 3em;
+	 	padding-bottom: 3em;
+	 }
+
+	 .total-score-container h1 {
+	 	text-decoration: underline;
+	 }
+
+	 /* Live */
+
+	 .first-row-live {
+	 	margin-top: 5em;
+	 }
+
+	 .first-row-live h1 {
+	 	font-size: 4rem;
+	 }
+
+	 .live-score-row {
+	 	max-width: 90%;	
+	 }
+
+	 .team-name-live {
+	 	font-size: 4rem;
+	 }
+
+	 .set-score {
+	 	font-size: 8rem;
+	 }
+
+	 .team-score-live {
+	 	font-size: 13rem;
+	 	line-height: 0.9
+	 }
+
+	 /* Gamelist */
+
+	 .bracket-games .team-list-item-data {
+	 	width: 3em;
+	 }
+
+	 .first-row-gamelist {
+	 	margin-top: 2em;
+	 }
+
+	 .bracket-games {
+	 	max-width: 90%;
+	 	margin-bottom: 2em;
+	 }
+
+	 .bracket-games h2 {
+	 	font-size: 4rem;
+	 	margin-top: 0.56em;
+	 	text-align: center;
+	 }
+
+	 .group-games h2 {
+	 	margin-top: 1em;
+	 	text-align: center;
+	 }
+
+	 .quarter-final-games,
+	 .semi-final-games,
+	 .grand-final-games,
+	 .group-stage-games {
+	 	list-style: none;
+	 }
+
+	 .quarter-final-games>*,
+	 .group-stage-games>* {
+	 	margin-bottom: 1em;
+	 }
+
+	 .quarter-final-games ul,
+	 .semi-final-games ul,
+	 .grand-final-games ul,
+	 .group-stage-games ul {
+	 	font-family: 'league_gothicregular';
+	 	background-color: black;
+	 	color: white;
+	 	border: 1px solid white;
+	 }
+
+	 .quarter-final-games ul:hover,
+	 .semi-final-games ul:hover, 
+	 .grand-final-games ul:hover, 
+	 .group-stage-games ul:hover  {
+	 	background-color: white;
+	 	color: black;
+	 }
+
+	 .semi-final-games {
+	 	margin-top: 2em;
+	 }
+
+	 .semi-final-games > :last-child {
+	 	margin-top: 7em;
+	 }
+
+	 .grand-final-games {
+	 	margin-top: 10.2em;
+	 }
+
+	 .game-list-item {
+	 	list-style: none;
+	 }
+
+	 .game-list-item ul {
+	 	list-style: none;
+	 	margin: 0;
+	 }
+
+	 .game-list-item ul .team-one {
+	 	border-bottom: 1px solid;
+	 }
+
+	 .team-name {
+	 	display: inline-block;
+	 	margin: 0.5em 1em 0.5em 1em;
+	 	padding: 0;
+	 	font-size: 1.8rem;
+	 }
+
+	 .team-score {
+	 	display: inline-block;
+	 	margin: 0.5em 1em 0.5em 1em;
+	 	padding: 0;	
+	 	font-size: 1.8rem;
+	 }
+
+	 .mouse-on {
+	 	-webkit-box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
+	 	-moz-box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
+	 	box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,1);
+	 	background-color: white;
+	 	color: black;
+	 }
+
+	 .status-pre {
+	 	background-color: rgba(189,183,107,0.8);
+	 }
+
+	 .status-active {
+	 	background-color: rgba(34,139,34,0.8);
+	 }
+
+	 .status-post {
+	 	background-color: rgba(255,0,0,0.8);
+	 }
+
+	 .current-location {
+	 	background-color: white !important;
+	 	color: black !important;
+	 }
+
+	 .button {
+	 	font-family: 'league_gothicregular';
+	 }
+
+	 .button-group {
+	 	text-align: center;
+
+	 }
+
+	 .button-group.round>* .button {
+	 	background-color: black;
+	 	border: 1px solid white;
+	 	margin: 1em 0em 1em 0em;
+	 	font-size: 1.5rem;
+	 }
+
+	 .button-group.round>* .button {
+	 	border-bottom: 1px solid white;
+	 	border-left: 1px solid white;
+	 	border-top: 1px solid white;
+	 }
+
+
+
+	 .button-group.round>* .button:last-child {
+	 	border-bottom: 1px solid white;
+	 	border-left: 1px solid white;
+	 	border-top: 1px solid white;
+	 	border-right: 1px solid white;
+	 }
+
+	 /* Team List */
+	 .team-list {
+	 	border: none;
+	 	background: none;
+	 	font-family: 'league_gothicregular';
+	 	width: initial;
+	 	margin: 0 auto;
+	 	margin-top: 3em;
+	 }
+
+	 .team-list thead {
+	 	background: none;
+	 }
+
+	 .team-list thead tr th {
+	 	color: white;
+	 	font-size: 4rem;
+	 	line-height: 3rem;
+	 	font-weight: normal;
+	 	padding-bottom: 0.5em;
+
+	 }
+
+	 .team-list .team-list-item {
+	 	background: none;
+	 }
+
+	 .team-list .team-list-item td {
+	 	color: white;
+	 	font-size: 3rem;
+	 	border-bottom: 1px solid white;
+	 	line-height: 2.5rem;
+	 }
+
+	 .team-list-item-data {
+	 	width: 5em;
+	 }
+
+	 /* Admin */
+
+	 /* Login */
+
+	 #login-dropdown-list {
+	 	margin-top: 1em;
+	 }
+
+	 .login-form {
+	 	margin-top: 1em;
+	 }
+
+	 .login-link-text {
+	 	color: white;
+	 	font-size: 1.5rem;
+	 }
+
+	 .login-close-text {
+	 	background: red;
+	 	padding: 0.3em;
+	 	color: white;
+	 	border-radius: 0.4em;
+	 	border: 1px solid white;
+	 }
+
+	 .login-close-text:hover {
+	 	box-shadow: 0px 0px 7px 4px red;
+	 }
+
+	 #login-username {
+	 	text-align: center;
+	 }
+
+	 #login-password {
+	 	text-align: center;
+	 }
+
+	 #login-username-label {
+	 	color: white;
+	 	font-size: 1rem;
+	 }
+
+	 #login-password-label {
+	 	color: white;
+	 	font-size: 1rem;
+	 }
+
+
+	 .login-button {
+	 	padding: 0.3em;
+	 	background: black;
+	 	color: white;
+	 	border-radius: 0.4em;
+	 	border: 1px solid white;
+	 	display: inline-block;
+	 	margin: 0.5em;
+	 }
+
+	 .login-button:hover,
+	 #signup-link:hover {
+	 	background: white;
+	 	color: black;
+	 	border-color: black;
+	 	cursor: pointer;
+	 }
+
+	 .login-button-form-submit:hover {
+	 	box-shadow: 0px 0px 7px 4px green;
+	 	border-color: white;
+	 }
+
+	 .additional-link-container {
+	 	margin-top: 1em;
+	 }
+
+	 .login-button-form-submit:hover {
+	 	background: green;
+	 	width: auto;
+	 	border-radius: 0.4em;
+	 	display: inline-block;
+	 	color: white;
+	 }
+
+	 #signup-link {
+	 	padding: 0.3em;
+	 	background: black;
+	 	color: white;
+	 	border-radius: 0.4em;
+	 	border: 1px solid white;
+	 }
+
+	 .accounts-dialog {
+	 	width: 50%;
+	 	margin: 0 auto;
+	 	margin-top: 1em;
+	 }
+
+	 .login-old-password-label-and-input {
+	 	margin-top: 1em;
+	 }
+
+	 /* Teamlist */
+
+	 .team-column {
+	 	text-align: center;
+	 	margin-top: 1em;
+	 }
+
+	 .admin-team-list {
+	 	background: rgba(0,0,0,0.7);
+	 	border: 1px solid white;
+	 	margin-top: 0;
+	 }
+
+	 .admin-team-list th {
+	 	font-size: 2rem !important;
+	 	text-align: center;
+	 }
+
+	 .admin-team-list td {
+	 	font-size: 1.5rem;
+	 	padding: 0.1em;
+	 	text-align: center;
+	 }
+
+	 .admin-team-list form,
+	 .admin-team-list input {
+	 	margin-bottom: 0;
+	 }
+
+	 .admin-team-list tr,
+	 .admin-team-list tr:nth-of-type(even) {
+	 	background: transparent;
+	 }
+
+	 .admin-team-list .postfix.button {
+	 	border: 1px solid white;
+	 	border-top-right-radius: 0.5em;
+	 	border-bottom-left-radius: 0;
+	 	border-top-left-radius: 0;
+	 	border-bottom-right-radius: 0.5em;
+	 	border-left: none;
+	 	margin: 0;
+	 }
+
+	 .admin-team-list .score-input {
+	 	margin: 0;
+	 }
+
+	 .admin-team-list tbody td input{
+	 	margin-left: 0.3em;
+	 	font-size: 2.5rem;
+	 	padding: 0.3em;
+	 	line-height: 0.3;
+	 }
+
+	 .admin-team-list tbody td input.delete {
+	 	font-size: 1.5rem;
+	 	margin-left: 0;
+	 	padding: 0.7em;
+	 }
+
+
+	 .admin-team-list tbody td input.dec-point.alert {
+	 	margin-right: 0.3em;
+	 	margin-left: 0em;
+	 	font-size: 3rem;
+	 	padding: 0.25em;
+	 	padding-bottom: 0.3em;
+	 	line-height: 0.3;
+	 }
+
+	 /* Create Team */
+
+	 .create-team-form {
+	 	width: 50%;
+	 	text-align: center;
+	 	margin: 0 auto;
+	 }
+
+	 /* AdminLive */
+
+	 .admin-live-info {
+
+	 }
+
+	 .admin-live-info h3 {
+	 	display: inline-block;
+	 }
+
+	 .admin-live-info .sets-container {
+	 	display: block;
+	 }
+
+	 .admin-live-score {
+
+	 }
+
+	 .admin-live-score h3 {
+	 	display: inline-block;
+	 }
+
+	 .admin-live-score .button {
+	 	padding: 1em;
+	 	font-size: 2rem;
+	 }
+
+	 .admin-live-info .newSet{
+	 	font-size: 2rem;
+	 }
+
+	 /* AdminGameList */
+
+	 .admin-game-list-item {
+	 	color: white;
+	 	font-family: 'league_gothicregular';
+	 	font-size: 1.4rem;
+	 	padding: 0.5em;
+	 	border: 1px solid white;
+	 	border-radius: 0.5em;
+	 	background: rgba(0,0,0,0.7);
+	 	display: inline-block;
+	 	margin-bottom: 1em;
+	 }
+
+	 .admin-game-list-item a,
+	 .admin-game-list-item input {
+	 	margin-bottom: 0.5em;
+	 }
+
+	 .admin-game-list-item .status-group {
+	 	display: inline;
+	 }
+
+	 .admin-game-list-item .status-group>li .button {
+	 	border-color: white !important;
+	 }
+
+	 .admin-game-list-item .status-group>li:first-child .button {
+	 	border: 1px solid;
+	 }
+
+	 /* Create game */
+	 .create-edit-game-form {
+	 	margin: 0 auto;
+	 	text-align: center;
+	 	width: 50%;
+	 }
+
+	 .view-game-row {
+
+	 }
+
+	 .view-game-row h2 {
+	 	font-size: 4rem;
+	 }
+
+	 .view-game-row h3 {
+	 	font-size: 3.5rem;
+	 }
+
+
+	 @media only screen and (max-width: 40em) { 
+	 	.quarter-final-games>*,
+	 	.semi-final-games,
+	 	.semi-final-games > :last-child,
+	 	.grand-final-games,
+	 	.group-stage-games {
+	 		margin-top: 1em;
+	 	}
+
+	 	.button-group.round>* .button {
+	 		font-size: 1rem;
+	 		padding: 1em 1em 1em 1em;
+	 	}
+
+	 	.first-row-live {
+	 		margin-top: 3em;
+	 	}
+
+	 	.background-container {
+	 		background-size: 100% auto;
+	 	}
+
+	 }
