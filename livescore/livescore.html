@@ -276,6 +276,7 @@
 			</ul>
 			<a href="/game/new" class="button text-center">New Game</a>
 			<a href="/admin" class="button">Back</a>
+			<input type="button" class="button deactivate" value="Deactivate livegame">
 		</div>
 	</div>
 	<div class="row">
@@ -315,8 +316,8 @@
 <template name="adminGameListItem">
 	<li class="status-{{status}} admin-game-list-item">{{teamOne}} vs. {{teamTwo}}
 		<br />
-		<input class="button activate" value="Activate" data-id="{{_id}}" />
-		<input class="button alert delete" value="Delete" />
+		<input type="button" class="button activate" value="Activate" data-id="{{_id}}" />
+		<input type="button" class="button alert delete" value="Delete" />
 		<br />
 		<a href="/game/edit/{{_id}}" class="button">Edit</a>
 		<ul class="button-group text-left status-group">

@@ -169,6 +169,16 @@ if (Meteor.isClient) {
 			Router.go("/admin/live");
 		},
 
+		'click input.deactivate': function(event, template) {
+			var oldGame = Games.findOne({active: true});
+			if(oldGame) {
+				Games.update({_id: oldGame._id}, {$set: {active: false}});
+				$(event.target).attr('value', 'Game Deactivated!')
+			} else {
+				$(event.target).attr('value', 'No active game!')
+			}
+		},
+
 		'click a.status': function(event, template) {
 			var status = $(event.target).data('status');
 			Games.update({_id: this._id}, {$set: {status: status}});
@@ -275,8 +285,7 @@ Template.adminLive.events({
 
 	'click input.decOne': function(event, template) {
 		var gameID = $('#liveGameID').text();
-		var teamOneScore = $('#teamOneScore').text();
-		Games.update({_id: gameID}, {$set: {teamOneScore: teamOneScore-1}});
+		Games.update({_id: gameID}, {$inc: {teamOneScore: -1}});
 	},
 
 	'click input.scoreTwo': function(event, template) {
@@ -286,8 +295,7 @@ Template.adminLive.events({
 
 	'click input.decTwo': function(event, template) {
 		var gameID = $('#liveGameID').text();
-		var teamTwoScore = $('#teamTwoScore').text();
-		Games.update({_id: gameID}, {$set: {teamTwoScore: teamTwoScore-1}});
+		Games.update({_id: gameID}, {$inc: {teamTwoScore: -1}});
 	},
 
 	'click input.setOne': function(event, template) {
@@ -297,8 +305,7 @@ Template.adminLive.events({
 
 	'click input.decSetOne': function(event, template) {
 		var gameID = $('#liveGameID').text();
-		var teamOneSetScore = $('#teamOneSetScore').text();
-		Games.update({_id: gameID}, {$set: {teamOneSetScore: teamOneSetScore-1}});
+		Games.update({_id: gameID}, {$inc: {teamOneSetScore: -1}});
 	},
 
 	'click input.setTwo': function(event, template) {
@@ -308,14 +315,13 @@ Template.adminLive.events({
 
 	'click input.decSetTwo': function(event, template) {
 		var gameID = $('#liveGameID').text();
-		var teamTwoSetScore = $('#teamTwoSetScore').text();
-		Games.update({_id: gameID}, {$set: {teamTwoSetScore: teamTwoSetScore-1}});
+		Games.update({_id: gameID}, {$inc: {teamTwoSetScore: -1}});
 	},
 
 	'click input.newSet': function(event, template) {
 		var gameID = $('#liveGameID').text();
-		var teamOneScore = $('#teamOneScore').text();
-		var teamTwoScore = $('#teamTwoScore').text();
+		var teamOneScore = parseInt($('#teamOneScore').text());
+		var teamTwoScore = parseInt($('#teamTwoScore').text());
 		if(teamOneScore > teamTwoScore) {
 			Games.update({_id: gameID}, {$inc: {teamOneSetScore: 1}});
 		} else if(teamTwoScore > teamOneScore) {

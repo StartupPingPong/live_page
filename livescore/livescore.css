@@ -189,6 +189,13 @@
 
 	 .bracket-games .team-list-item-data {
 	 	width: 3em;
+	 	font-size: 2rem !important;
+	 }
+
+	 .bracket-games .team-list {
+	 	margin-left: 0em;
+	 	margin-right: 0em;
+	 	width: 100%;
 	 }
 
 	 .first-row-gamelist {
@@ -480,6 +487,7 @@
 	 .team-column {
 	 	text-align: center;
 	 	margin-top: 1em;
+
 	 }
 
 	 .admin-team-list {
@@ -634,7 +642,13 @@
 	 .view-game-row h3 {
 	 	font-size: 3.5rem;
 	 }
-
+	 @media only screen and (max-width: 1025px) {
+	 	.bracket-games .team-list {
+	 		width: initial;
+	 		margin: 0 auto;
+	 		margin-top: 3em;
+	 	}
+	 }
 
 	 @media only screen and (max-width: 40em) { 
 	 	.quarter-final-games>*,
@@ -657,5 +671,7 @@
 	 	.background-container {
 	 		background-size: 100% auto;
 	 	}
+
+	 	
 
 	 }
