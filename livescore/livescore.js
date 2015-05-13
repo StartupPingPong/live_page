@@ -88,9 +88,9 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			var gameID = event.target.gameID.value;
 			var teamOne = Teams.findOne({name: event.target.teamOne.value});
-			var teamOneScore = event.target.teamOneScore.value;
+			var teamOneScore = parseInt(event.target.teamOneScore.value);
 			var teamTwo = Teams.findOne({name: event.target.teamTwo.value});
-			var teamTwoScore = event.target.teamTwoScore.value;
+			var teamTwoScore = parseInt(event.target.teamTwoScore.value);
 			var gameType = event.target.gameType.value;
 			var eventLocation = event.target.eventLocation.value;
 			var status = event.target.status.value;
