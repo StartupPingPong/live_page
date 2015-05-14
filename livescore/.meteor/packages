@@ -7,8 +7,8 @@ meteor-platform
 autopublish
 insecure
 iron:router
-foundation
 accounts-password
 accounts-ui-unstyled
 manuelschoebel:ms-seo
 
+ewall:foundation
