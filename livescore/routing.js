@@ -1,5 +1,5 @@
 Router.route('/', function() {
-	Session.set('eventLocation', 'push');
+	Session.set('eventLocation', 'fa');
 	this.render('home');
 });
 
@@ -12,7 +12,7 @@ Router.route ('/live', function() {
 });
 
 Router.route('/game', function() {
-	Session.set('eventLocation', 'push');
+	Session.set('eventLocation', 'fa');
 	this.render('gamelist');
 });
 
@@ -53,7 +53,7 @@ Router.route('/admin', function() {
 });
 
 Router.route('/admin/game', function() {
-	Session.set('eventLocation', 'eday');
+	Session.set('eventLocation', 'fa');
 	this.render('adminGameList');
 });
 
