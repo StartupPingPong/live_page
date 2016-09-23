@@ -1,5 +1,5 @@
 Router.route('/', function() {
-	Session.set('eventLocation', 'fa');
+	Session.set('eventLocation', 'spotify');
 	this.render('home');
 });
 
@@ -12,8 +12,18 @@ Router.route ('/live', function() {
 });
 
 Router.route('/game', function() {
-	Session.set('eventLocation', 'fa');
+	Session.set('eventLocation', 'spotify');
 	this.render('gamelist');
+});
+
+Router.route('/gamea', function() {
+	Session.set('eventLocation', 'spotify');
+	this.render('gamelista');
+});
+
+Router.route('/gameb', function() {
+	Session.set('eventLocation', 'spotify');
+	this.render('gamelistb');
 });
 
 Router.route('/game/new', function() {
@@ -21,7 +31,7 @@ Router.route('/game/new', function() {
 });
 
 Router.route('/game/edit/:_id', function() {
-	this.render('editGame', { 
+	this.render('editGame', {
 		data: function() {
 			templateData = { game: Games.findOne({_id: this.params._id}) };
 			return templateData;
@@ -53,7 +63,7 @@ Router.route('/admin', function() {
 });
 
 Router.route('/admin/game', function() {
-	Session.set('eventLocation', 'fa');
+	Session.set('eventLocation', 'spotify');
 	this.render('adminGameList');
 });
 
@@ -63,7 +73,7 @@ Router.route('/admin/live', function() {
 
 Router.route('/admin/team', function() {
 	this.render('adminTeam');
-});	
+});
 
 Router.route('admin/team/new', function() {
 	this.render('createTeam');

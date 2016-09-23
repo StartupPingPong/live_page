@@ -79,7 +79,7 @@ if (Meteor.isClient) {
 				return "Checked";
 			} else {
 				return "";
-			}	
+			}
 		}
 	});
 
@@ -121,8 +121,17 @@ if (Meteor.isClient) {
 		games: function() {
 			return Games.find();
 		},
+		stage1AGames: function(eventLocation) {
+			return Games.find({gameType: "Stage1A", eventLocation: eventLocation})
+		},
 		groupStageGames: function(eventLocation) {
 			return Games.find({gameType: "Groupstage", eventLocation: eventLocation})
+		},
+		groupStage1Games: function(eventLocation) {
+			return Games.find({gameType: "Groupstage1", eventLocation: eventLocation})
+		},
+		groupStage2Games: function(eventLocation) {
+			return Games.find({gameType: "Groupstage2", eventLocation: eventLocation})
 		},
 		quarterFinalGames: function(eventLocation) {
 			return Games.find({gameType: "Quarterfinal", eventLocation: eventLocation})
@@ -195,11 +204,28 @@ Template.gamelist.helpers({
 		return result;
 	},
 
+	stage1AGames: function(eventLocation) {
+		var result = Games.find({gameType: "Stage1A", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
 	findGames: function(gameType, eventLocation) {
 		var result = Games.find({gameType: gameType+"final", eventLocation: eventLocation}).fetch();
 		var dummyCount = result.length + 1;
 		var maxCount = 0;
 		switch (gameType) {
+			case  "Stage1A":
+			maxCount = 11;
+			break;
+			case "Groupstage":
+			maxCount = 11;
+			break;
+			case "Groupstage1":
+			maxCount = 11;
+			break;
+			case "Groupstage2":
+			maxCount = 11;
+			break;
 			case "Quarter":
 			maxCount = 5;
 			break;
@@ -248,7 +274,235 @@ Template.gamelist.helpers({
 	}
 });
 
+Template.gamelista.helpers({
+	games: function() {
+		return Games.find();
+	},
+	stage1AGames: function(eventLocation) {
+		var result = Games.find({gameType: "Stage1A", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	groupStage1Games: function(eventLocation) {
+		var result = Games.find({gameType: "Groupstage1", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	groupStage1Games: function(eventLocation) {
+		var result = Games.find({gameType: "Groupstage1", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	groupStage2Games: function(eventLocation) {
+		var result = Games.find({gameType: "Groupstage2", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	findGames: function(gameType, eventLocation) {
+		var result = Games.find({gameType: gameType, eventLocation: eventLocation}).fetch();
+		var dummyCount = result.length + 1;
+		var maxCount = 0;
+		switch (gameType) {
+			case "Groupstage2":
+			maxCount = 11;
+			break;
+			case "Groupstage1":
+			maxCount = 5;
+			break;
+			case "Semi":
+			maxCount = 3;
+			break;
+			case "Grand":
+			maxCount = 2;
+			break;
+		}
+		if(result.length < maxCount) {
+			while(dummyCount < maxCount) {
+				var dummy = {
+					_id: gameType+"final"+dummyCount,
+					active: false,
+					createdAt: new Date(),
+					eventLocation: eventLocation,
+					status: "pre",
+					teamOne: gameType+" Finalist #" + ((dummyCount*2)-1),
+					teamOneID: gameType+"team"+((dummyCount*2)-1),
+					teamOneScore: 0,
+					teamTwo: gameType+" Finalist #" + (dummyCount*2),
+					teamTwoID: gameType+"team"+dummyCount*2,
+					teamTwoScore: 0,
+					dummy: true
+				}
+				result.push(dummy);
+				dummyCount++;
+			}
+		} else if(result.length > (maxCount-1)){
+			return result.slice(0,(maxCount-1));
+		};
+		return result;
+	},
+
+	findGames2: function(gameType, eventLocation) {
+		var result = Games.find({gameType: gameType, eventLocation: eventLocation}).fetch();
+		var dummyCount = result.length + 1;
+		var maxCount = 0;
+		switch (gameType) {
+			case "Groupstage2":
+			maxCount = 11;
+			break;
+			case "Groupstage1":
+			maxCount = 11;
+			break;
+			case "Semi":
+			maxCount = 3;
+			break;
+			case "Grand":
+			maxCount = 2;
+			break;
+		}
+		for(i=5;i<result.length;i++){
+				var dummy = {
+					_id: gameType+"final"+i,
+					active: false,
+					createdAt: new Date(),
+					eventLocation: eventLocation,
+					status: "pre",
+					teamOne: gameType+" Finalist #" + ((i*2)-1),
+					teamOneID: gameType+"team"+((i*2)-1),
+					teamOneScore: 0,
+					teamTwo: gameType+" Finalist #" + (i*2),
+					teamTwoID: gameType+"team"+i*2,
+					teamTwoScore: 0,
+					dummy: true
+				}
+				result.push(dummy);
+
+			}
+		return result;
+	},
+
+	currentLocation: function() {
+		return Session.get('eventLocation');
+	},
+
+	isCurrentLocation: function(locationOne, locationTwo) {
+		if (locationOne == locationTwo) {
+			return "current-location";
+		} else {
+			return "";
+		}
+	}
+});
+
+Template.gamelistb.helpers({
+	games: function() {
+		return Games.find();
+	},
+	stage1AGames: function(eventLocation) {
+		var result = Games.find({gameType: "Stage1A", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	groupStage1Games: function(eventLocation) {
+		var result = Games.find({gameType: "Groupstage1", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	groupStage2Games: function(eventLocation) {
+		var result = Games.find({gameType: "Groupstage2", eventLocation: eventLocation})
+		console.log(result)
+		return result;
+	},
+	findGames: function(gameType, eventLocation) {
+		var result = Games.find({gameType: gameType, eventLocation: eventLocation}).fetch();
+		var dummyCount = result.length + 1;
+		var maxCount = 0;
+		switch (gameType) {
+			case "Groupstage2":
+			maxCount = 6;
+			break;
+			case "Groupstage1":
+			maxCount = 11;
+			break;
+			case "Semi":
+			maxCount = 3;
+			break;
+			case "Grand":
+			maxCount = 2;
+			break;
+		}
+		if(result.length < maxCount) {
+			while(dummyCount < maxCount) {
+				var dummy = {
+					_id: gameType+"final"+dummyCount,
+					active: false,
+					createdAt: new Date(),
+					eventLocation: eventLocation,
+					status: "pre",
+					teamOne: gameType+" Finalist #" + ((dummyCount*2)-1),
+					teamOneID: gameType+"team"+((dummyCount*2)-1),
+					teamOneScore: 0,
+					teamTwo: gameType+" Finalist #" + (dummyCount*2),
+					teamTwoID: gameType+"team"+dummyCount*2,
+					teamTwoScore: 0,
+					dummy: true
+				}
+				result.push(dummy);
+				dummyCount++;
+			}
+		} else if(result.length > (maxCount-1)){
+			return result.slice(0,(maxCount-1));
+		};
+		return result;
+	},
+
+	currentLocation: function() {
+		return Session.get('eventLocation');
+	},
+
+	isCurrentLocation: function(locationOne, locationTwo) {
+		if (locationOne == locationTwo) {
+			return "current-location";
+		} else {
+			return "";
+		}
+	}
+});
+
 Template.gamelist.events({
+	'click a': function(event, template) {
+		var eventLocation = $(event.target).data('name');
+		Session.set('eventLocation', eventLocation);
+	},
+
+	'mouseover .team-item': function(event, template) {
+		var teamID = $(event.target).data('id');
+		$('.' + teamID).addClass("mouse-on");
+	},
+
+	'mouseleave .team-item': function(event, template) {
+		var teamID = $(event.target).data('id');
+		$('.' + teamID).removeClass("mouse-on");
+	}
+});
+
+Template.gamelista.events({
+	'click a': function(event, template) {
+		var eventLocation = $(event.target).data('name');
+		Session.set('eventLocation', eventLocation);
+	},
+
+	'mouseover .team-item': function(event, template) {
+		var teamID = $(event.target).data('id');
+		$('.' + teamID).addClass("mouse-on");
+	},
+
+	'mouseleave .team-item': function(event, template) {
+		var teamID = $(event.target).data('id');
+		$('.' + teamID).removeClass("mouse-on");
+	}
+});
+
+Template.gamelistb.events({
 	'click a': function(event, template) {
 		var eventLocation = $(event.target).data('name');
 		Session.set('eventLocation', eventLocation);

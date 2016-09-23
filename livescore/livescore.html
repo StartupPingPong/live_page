@@ -21,12 +21,20 @@
 		{{>header}}
 		<img src="supp-logo-white.jpg" style="display: none;"/>
 	</div>
-	
+
 </body>
 
 <template name="home">
 	<div class="game-list-container">
-		<h1 class="text-center">The Games</h1>
+		<h1 class="text-center">The Games A</h1>
+		{{> gamelista}}
+	</div>
+	<div class="game-list-container">
+		<h1 class="text-center">The Games B</h1>
+		{{> gamelistb}}
+	</div>
+	<div class="game-list-container">
+		<h1 class="text-center">The Games Final</h1>
 		{{> gamelist}}
 	</div>
 	<div class="live-game-container">
@@ -45,6 +53,8 @@
 			<section class="top-bar-section">
 				<ul class="header-links">
 					<li><a class="header-link" href="/game">Game List</a></li>
+					<li><a class="header-link" href="/gamea">Game List A</a></li>
+					<li><a class="header-link" href="/gameb">Game List B</a></li>
 					<li><a class="header-link" href="/live">Live</a></li>
 					<li><a class="header-link" href="/total">Total Score</a></li>
 					{{#if currentUser}}
@@ -56,48 +66,54 @@
 			</section>
 		</nav>
 	</header>
-</template>	
+</template>
 
 <template name="live">
 	{{#if livegame}}
-	<div class="row first-row-live">
+	<!--<div class="row first-row-live">
 		<div class="large-12 columns"><h1 class="text-center">{{livegame.gameType}}</h1></div>
-	</div>
+	</div>-->
 	<div class="row">
 		<div class="large-12 columns"><h2 class="text-center">Best of {{livegame.sets}}</h2></div>
 	</div>
-	<div class="row hide-for-large-up">
+	<!--<div class="row hide-for-large-up">
 		<div class="small-12 columns">
 			<h2 class="text-center">Sets:</h2>
 			<h3 class="text-center set-score">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
 		</div>
-	</div>
+	</div>-->
 	<div class="row live-score-row">
 		<div class="large-4 columns small-6 columns">
 			<h1 class="text-center team-name-live">{{livegame.teamOne}}</h1>
 			<h1 class="text-center team-score-live">{{livegame.teamOneScore}}</h1>
 		</div>
 		<div class="large-4 columns show-for-large-up	">
-			<h2 class="text-center">Sets:</h2>
-			<h3 class="text-center set-score">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
-			<img src="fa-logo.png">
+				<h2 class="text-center"></h2>
+				<h2 class="text-center">Sets:</h2>
+				<h3 class="text-center set-score">{{livegame.teamOneSetScore}} - {{livegame.teamTwoSetScore}}</h3>
+				<img src="Spotify_Logo.png">
 		</div>
 		<div class="large-4 columns small-6 columns">
 			<h1 class="text-center team-name-live">{{livegame.teamTwo}}</h1>
 			<h1 class="text-center team-score-live">{{livegame.teamTwoScore}}</h1>
 		</div>
 	</div>
-	<div class="row live-sponsor-logo-row">
-		<div class="small-4 columns">
+
+	<!--	<div class="row live-sponsor-logo-row">
+			<div class="large-4 columns show-for-large-up">
+				<h2 class="text-center"></h2>
+				<img src="Spotify_Logo.png">
+			</div>
+		</div>
 			<img src="Macforum-White.png" class="macforum-logo">
 		</div>
-		<div class="small-4 columns">		
+		<div class="small-4 columns">
 			<img src="cse.png" class="cse-logo">
 		</div>
 		<div class="small-4 columns">
 			<img src="chalmersventures.png" class="cv-logo">
-		</div>
-	</div>
+
+	</div>-->
 	{{else}}
 	<div class="row">
 		<div class="large-12 columns">
@@ -148,10 +164,7 @@
 	<div class="row first-row-gamelist">
 		<div class="large-12 columns">
 			<ul class="button-group round">
-				<li><a href="#" class="button {{isCurrentLocation currentLocation 'pustervik'}}" data-name="pustervik">Pustervik</a></li>
-				<li><a href="#" class="button {{isCurrentLocation currentLocation 'push'}}" data-name="push">PUSH</a></li>
-				<li><a href="#" class="button {{isCurrentLocation currentLocation 'parklane'}}" data-name="parklane">Park Lane</a></li>
-				<li><a href="#" class="button {{isCurrentLocation currentLocation 'fa'}}" data-name="fa">Football Addicts</a></li>
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'spotify'}}" data-name="spotify">Spotify</a></li>
 			</ul>
 		</div>
 	</div>
@@ -181,23 +194,58 @@
 			</ul>
 		</div>
 	</div>
-	<!--
-	<div class="row group-games">
+</template>
+<template name="gamelista">
+
+	<div class="row first-row-gamelist">
 		<div class="large-12 columns">
-			<h2>Groupstage</h2>
-			<ul class="group-stage-games">
-				{{#if groupStageGames currentLocation}}
-				{{#each groupStageGames currentLocation}}
-				{{>gameListItem}}
-				{{/each}}
-				{{else}}
-				<h1 class="text-center">No Groupstage games at the momend</h1>
-				{{/if}}
+			<ul class="button-group round">
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'spotify'}}" data-name="spotify">Spotify</a></li>
 			</ul>
 		</div>
 	</div>
-	-->
+	<div class="row bracket-games" data-equalizer>
+		<div class="medium-6 columns large-4 columns semi-final-games-container"  data-equalizer-watch>
+			<h2>Third Stage</h2>
+			<ul class="semi-final-games">
+				{{#each findGames "Groupstage1" currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+		<!--<div class="medium-12 columns large-4 columns" data-equalizer-watch>
+			<h2>First Stage</h2>
+			<ul class="quarter-final-games">
+				{{#each findGames2 "Groupstage1" currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
+		</div>-->
+	</div>
+
 </template>
+
+<template name="gamelistb">
+
+	<div class="row first-row-gamelist">
+		<div class="large-12 columns">
+			<ul class="button-group round">
+				<li><a href="#" class="button {{isCurrentLocation currentLocation 'spotify'}}" data-name="spotify">Spotify</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row bracket-games" data-equalizer>
+		<div class="medium-12 columns large-4 columns" data-equalizer-watch>
+			<h2>Second Stage</h2>
+			<ul class="quarter-final-games">
+				{{#each findGames "Groupstage2" currentLocation}}
+				{{>gameListItem}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</template>
+
 
 <template name="gameListItem">
 	<li id="{{_id}}" class="status-{{status}} game-list-item"><a href="/game/{{_id}}">
@@ -266,7 +314,7 @@
 			<br />
 			<input type="button" class="button tiny scoreTwo" value="+" data-name="{{teamTwo}}" />
 			<input type="button" class="button tiny alert decTwo" value="-" data-name="{{teamTwo}}" />
-			
+
 		</div>
 	</div>
 	{{else}}
@@ -286,10 +334,7 @@
 	<div class="row">
 		<div class="large-12 columns text-center">
 			<ul class="button-group round">
-				<li><a href="#" class="button location {{isCurrentLocation currentLocation 'pustervik'}}" data-name="pustervik">Pustervik</a></li>
-				<li><a href="#" class="button location {{isCurrentLocation currentLocation 'push'}}" data-name="push">PUSH</a></li>
-				<li><a href="#" class="button location {{isCurrentLocation currentLocation 'parklane'}}" data-name="parklane">Park Lane</a></li>
-				<li><a href="#" class="button location {{isCurrentLocation currentLocation 'fa'}}" data-name="fa">Football Addicts</a></li>
+				<li><a href="#" class="button location {{isCurrentLocation currentLocation 'spotify'}}" data-name="spotify">Spotify</a></li>
 			</ul>
 			<a href="/game/new" class="button text-center">New Game</a>
 			<a href="/admin" class="button">Back</a>
@@ -329,6 +374,30 @@
 			{{>adminGameListItem}}
 			{{/each}}
 		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 colums">
+			<h2>Groupstage 1</h2>
+			{{#each groupStage1Games currentLocation}}
+			{{>adminGameListItem}}
+			{{/each}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 colums">
+			<h2>Groupstage 2</h2>
+			{{#each groupStage2Games currentLocation}}
+			{{>adminGameListItem}}
+			{{/each}}
+		</div>
+	</div>
+	<div class="large-12 columns">
+		<h2>Stage 1 A</h2>
+		<ul>
+			{{#each stage1AGames currentLocation}}
+			{{>adminGameListItem}}
+			{{/each}}
+		</ul>
 	</div>
 	{{else}}
 	{{> notLoggedIn}}
@@ -373,6 +442,9 @@
 				</label>
 				<label>Game Type
 					<select name="gameType">
+						<option value="Stage1Afinal">Stage 1 A</option>
+						<option value="Groupstage1">Groupstage 1</option>
+						<option value="Groupstage2">Groupstage 2</option>
 						<option value="Groupstage">Groupstage</option>
 						<option value="Quarterfinal">Quarterfinal</option>
 						<option value="Semifinal">Semifinal</option>
@@ -381,10 +453,7 @@
 				</label>
 				<label>Event Location
 					<select name="eventLocation">
-						<option value="pustervik">Pustervik</option>
-						<option value="push">PUSH</option>
-						<option value="parklane">Park Lane</option>
-						<option value="fa">Football Addicts</option>
+						<option value="spotify">Spotify</option>
 					</select>
 				</label>
 				<label># of sets
@@ -432,7 +501,10 @@
 				</label>
 				<label>Game Type
 					<select name="gameType">
+						<option value="Stage1Afinal" {{isSelected "Stage1Afinal" game.gameType}}>Stage1Afinal</option>
 						<option value="Groupstage" {{isSelected "Groupstage" game.gameType}}>Groupstage</option>
+						<option value="Groupstage1" {{isSelected "Groupstage1" game.gameType}}>Groupstage1</option>
+						<option value="Groupstage2" {{isSelected "Groupstage2" game.gameType}}>Groupstage2</option>
 						<option value="Quarterfinal" {{isSelected "Quarterfinal" game.gameType}}>Quarterfinal</option>
 						<option value="Semifinal" {{isSelected "Semifinal" game.gameType}}>Semifinal</option>
 						<option value="Grandfinal" {{isSelected "Grandfinal" game.gameType}}>Grandfinal</option>
@@ -440,10 +512,7 @@
 				</label>
 				<label>Event Location
 					<select name="eventLocation">
-						<option value="pustervik" {{isSelected "pustervik" game.eventLocation}}>Pustervik</option>
-						<option value="push" {{isSelected "push" game.eventLocation}}>PUSH</option>
-						<option value="parklane" {{isSelected "parklane" game.eventLocation}}>Park Lane</option>
-						<option value="fa" {{isSelected "fa" game.eventLocation}}>Football Addicts</option>
+						<option value="spotify" {{isSelected "spotify" game.eventLocation}}>Spotify</option>
 					</select>
 				</label>
 				<label>Status
@@ -468,7 +537,7 @@
 </template>
 
 <template name="createTeam">
-	{{#if currentUser}} 
+	{{#if currentUser}}
 	<div class="row">
 		<div class="large-12 columns">
 			<form class="create-team-form">
@@ -540,7 +609,7 @@
 	<tr>
 		<td>{{name}}</td>
 		<td><input type="button" id="{{_id}}" value="-" class="button alert dec-point">{{totalScore}}<input type="button" id="{{_id}}" value="+" class="button inc-point"></td>
-		
+
 		<td><input type="button" class="button alert delete" value="Delete" data-id="{{_id}}" /></td>
 	</tr>
 </template>

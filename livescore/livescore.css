@@ -17,8 +17,8 @@
 	 }
 
 
-	 ::-webkit-scrollbar { 
-	 	display: none; 
+	 ::-webkit-scrollbar {
+	 	display: none;
 	 }
 
 	 .background-container {
@@ -175,7 +175,7 @@
 	 }
 
 	 .live-score-row {
-	 	max-width: 90%;	
+	 	max-width: 90%;
 	 }
 
 	 .team-name-live {
@@ -193,6 +193,10 @@
 
 	 .live-sponsor-logo-row {
 	 	margin-top: 2em;
+	 }
+
+	 .spotify-logo {
+		 margin-top: 22em;
 	 }
 
 	 /* Gamelist */
@@ -251,8 +255,8 @@
 	 }
 
 	 .quarter-final-games ul:hover,
-	 .semi-final-games ul:hover, 
-	 .grand-final-games ul:hover, 
+	 .semi-final-games ul:hover,
+	 .grand-final-games ul:hover,
 	 .group-stage-games ul:hover  {
 	 	background-color: white;
 	 	color: black;
@@ -293,7 +297,7 @@
 	 .team-score {
 	 	display: inline-block;
 	 	margin: 0.5em 1em 0.5em 1em;
-	 	padding: 0;	
+	 	padding: 0;
 	 	font-size: 1.8rem;
 	 }
 
@@ -659,7 +663,7 @@
 	 	}
 	 }
 
-	 @media only screen and (max-width: 40em) { 
+	 @media only screen and (max-width: 40em) {
 	 	.quarter-final-games>*,
 	 	.semi-final-games,
 	 	.semi-final-games > :last-child,
@@ -681,6 +685,6 @@
 	 		background-size: 100% auto;
 	 	}
 
-	 	
+
 
 	 }
